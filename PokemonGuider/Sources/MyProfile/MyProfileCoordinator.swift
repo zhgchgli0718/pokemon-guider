@@ -19,7 +19,7 @@ final class MyProfileCoordinator: BaseCoordinator {
   
     override func start() {
         let myProfileViewController = MyProfileViewController()
-        navigationController.viewControllers = [myProfileViewController]
+        navigationController.setViewControllers([myProfileViewController], animated: false)
     }
 }
 

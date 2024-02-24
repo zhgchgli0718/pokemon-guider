@@ -15,6 +15,8 @@ final class HomeCoordinator: BaseCoordinator {
     init(homeTabBarController: HomeTabBarController) {
         self.homeTabBarController = homeTabBarController
         super.init()
+        
+        homeTabBarController.homeTabBarConrollerDelegate = self
     }
   
     override func start() {
@@ -47,6 +49,7 @@ private extension HomeCoordinator {
                 let coordinator = PokemonCoordinator(navigationController: navigationController)
                 navigationController.title = NSLocalizedString("pokemon_list", comment: "寶可夢")
                 navigationController.tabBarItem.image = UIImage(systemName: "lizard.circle")
+                navigationController.navigationBar.prefersLargeTitles = true
                 return (navigationController, coordinator)
             case .myProfile:
                 let navigationController = UINavigationController()
@@ -56,5 +59,14 @@ private extension HomeCoordinator {
                 return (navigationController, coordinator)
             }
         }
+    }
+}
+
+extension HomeCoordinator: HomeTabBarControllerDelegate {
+    func tabBarDidSelect(_ from: HomeTabBarController, didSelect viewController: UIViewController, index: Int) {
+        guard (viewController as? UINavigationController)?.viewControllers.isEmpty ?? false == true else {
+            return
+        }
+        childCoordinators[index].start()
     }
 }

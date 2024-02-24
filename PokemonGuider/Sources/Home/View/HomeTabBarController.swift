@@ -8,10 +8,24 @@
 import Foundation
 import UIKit
 
+protocol HomeTabBarControllerDelegate: AnyObject {
+    func tabBarDidSelect(_ from: HomeTabBarController, didSelect viewController: UIViewController, index: Int)
+}
+
 final class HomeTabBarController: UITabBarController {
+    
+    weak var homeTabBarConrollerDelegate: HomeTabBarControllerDelegate?
     
     override func viewDidLoad() {
         layoutUI()
+        
+        delegate = self
+    }
+}
+
+extension HomeTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        homeTabBarConrollerDelegate?.tabBarDidSelect(self, didSelect: viewController, index: selectedIndex)
     }
 }
 

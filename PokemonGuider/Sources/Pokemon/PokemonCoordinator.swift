@@ -19,6 +19,6 @@ final class PokemonCoordinator: BaseCoordinator {
   
     override func start() {
         let pokemonListViewController = PokemonListViewController()
-        navigationController.viewControllers = [pokemonListViewController]
+        navigationController.setViewControllers([pokemonListViewController], animated: false)
     }
 }
