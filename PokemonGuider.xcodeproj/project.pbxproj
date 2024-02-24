@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		1E6EAC102B899973004CC1D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC0F2B899973004CC1D2 /* AppDelegate.swift */; };
 		1E6EAC122B899973004CC1D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC112B899973004CC1D2 /* SceneDelegate.swift */; };
-		1E6EAC142B899973004CC1D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC132B899973004CC1D2 /* ViewController.swift */; };
-		1E6EAC172B899973004CC1D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6EAC152B899973004CC1D2 /* Main.storyboard */; };
 		1E6EAC1A2B899973004CC1D2 /* PokemonGuider.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC182B899973004CC1D2 /* PokemonGuider.xcdatamodeld */; };
 		1E6EAC1C2B899975004CC1D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E6EAC1B2B899975004CC1D2 /* Assets.xcassets */; };
 		1E6EAC1F2B899975004CC1D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6EAC1D2B899975004CC1D2 /* LaunchScreen.storyboard */; };
 		1E6EAC2A2B899975004CC1D2 /* PokemonGuiderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC292B899975004CC1D2 /* PokemonGuiderTests.swift */; };
 		1E6EAC342B899975004CC1D2 /* PokemonGuiderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC332B899975004CC1D2 /* PokemonGuiderUITests.swift */; };
 		1E6EAC362B899975004CC1D2 /* PokemonGuiderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC352B899975004CC1D2 /* PokemonGuiderUITestsLaunchTests.swift */; };
+		1E6EAC442B8999D4004CC1D2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E6EAC432B8999D4004CC1D2 /* SnapKit */; };
+		1E6EAC472B899B92004CC1D2 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 1E6EAC462B899B92004CC1D2 /* Moya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +40,6 @@
 		1E6EAC0C2B899973004CC1D2 /* PokemonGuider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonGuider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6EAC0F2B899973004CC1D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E6EAC112B899973004CC1D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1E6EAC132B899973004CC1D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1E6EAC162B899973004CC1D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E6EAC192B899973004CC1D2 /* PokemonGuider.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonGuider.xcdatamodel; sourceTree = "<group>"; };
 		1E6EAC1B2B899975004CC1D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E6EAC1E2B899975004CC1D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E6EAC472B899B92004CC1D2 /* Moya in Frameworks */,
+				1E6EAC442B8999D4004CC1D2 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,12 +103,8 @@
 			children = (
 				1E6EAC0F2B899973004CC1D2 /* AppDelegate.swift */,
 				1E6EAC112B899973004CC1D2 /* SceneDelegate.swift */,
-				1E6EAC132B899973004CC1D2 /* ViewController.swift */,
-				1E6EAC152B899973004CC1D2 /* Main.storyboard */,
-				1E6EAC1B2B899975004CC1D2 /* Assets.xcassets */,
-				1E6EAC1D2B899975004CC1D2 /* LaunchScreen.storyboard */,
-				1E6EAC202B899975004CC1D2 /* Info.plist */,
-				1E6EAC182B899973004CC1D2 /* PokemonGuider.xcdatamodeld */,
+				1E6EAC482B899BFF004CC1D2 /* Sources */,
+				1E6EAC492B899C06004CC1D2 /* Supporting Files */,
 			);
 			path = PokemonGuider;
 			sourceTree = "<group>";
@@ -130,6 +126,24 @@
 			path = PokemonGuiderUITests;
 			sourceTree = "<group>";
 		};
+		1E6EAC482B899BFF004CC1D2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1E6EAC492B899C06004CC1D2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1E6EAC1B2B899975004CC1D2 /* Assets.xcassets */,
+				1E6EAC1D2B899975004CC1D2 /* LaunchScreen.storyboard */,
+				1E6EAC202B899975004CC1D2 /* Info.plist */,
+				1E6EAC182B899973004CC1D2 /* PokemonGuider.xcdatamodeld */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +160,10 @@
 			dependencies = (
 			);
 			name = PokemonGuider;
+			packageProductDependencies = (
+				1E6EAC432B8999D4004CC1D2 /* SnapKit */,
+				1E6EAC462B899B92004CC1D2 /* Moya */,
+			);
 			productName = PokemonGuider;
 			productReference = 1E6EAC0C2B899973004CC1D2 /* PokemonGuider.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +236,10 @@
 				Base,
 			);
 			mainGroup = 1E6EAC032B899973004CC1D2;
+			packageReferences = (
+				1E6EAC422B8999D4004CC1D2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				1E6EAC452B899B92004CC1D2 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 1E6EAC0D2B899973004CC1D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -236,7 +258,6 @@
 			files = (
 				1E6EAC1F2B899975004CC1D2 /* LaunchScreen.storyboard in Resources */,
 				1E6EAC1C2B899975004CC1D2 /* Assets.xcassets in Resources */,
-				1E6EAC172B899973004CC1D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +282,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E6EAC142B899973004CC1D2 /* ViewController.swift in Sources */,
 				1E6EAC102B899973004CC1D2 /* AppDelegate.swift in Sources */,
 				1E6EAC122B899973004CC1D2 /* SceneDelegate.swift in Sources */,
 				1E6EAC1A2B899973004CC1D2 /* PokemonGuider.xcdatamodeld in Sources */,
@@ -301,14 +321,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1E6EAC152B899973004CC1D2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1E6EAC162B899973004CC1D2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1E6EAC1D2B899975004CC1D2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -449,6 +461,7 @@
 				DEVELOPMENT_TEAM = 4U9BQ9X87W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PokemonGuider/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pokemon Guider";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -477,6 +490,7 @@
 				DEVELOPMENT_TEAM = 4U9BQ9X87W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PokemonGuider/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pokemon Guider";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -611,6 +625,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1E6EAC422B8999D4004CC1D2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		1E6EAC452B899B92004CC1D2 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1E6EAC432B8999D4004CC1D2 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E6EAC422B8999D4004CC1D2 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		1E6EAC462B899B92004CC1D2 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E6EAC452B899B92004CC1D2 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1E6EAC182B899973004CC1D2 /* PokemonGuider.xcdatamodeld */ = {
