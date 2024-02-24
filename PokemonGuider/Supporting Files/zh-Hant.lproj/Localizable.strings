@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  PokemonGuider
+
+  Created by zhgchgli on 2024/2/24.
+  
+*/
+
+"pokemon_list" = "寶可夢";
+
+"my_profile" = "帳戶中心";
