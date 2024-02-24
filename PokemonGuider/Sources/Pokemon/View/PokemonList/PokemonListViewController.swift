@@ -33,13 +33,13 @@ final class PokemonListViewController: UIViewController {
 
 extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.cellViewObjects.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.className, for: indexPath)
         guard let cell = cell as? PokemonCollectionViewCell else { return cell }
-        cell.configure(viewObject: .init(name: "你好", id: "123", types: ["grass", "postion", "postion", "postion", "fire"], coverImage: URL(string: "https://zhgchg.li")!))
+        cell.configure(viewObject: viewModel.cellViewObjects[indexPath.row])
         return cell
     }
     
@@ -54,12 +54,32 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
+extension PokemonListViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+
+        // UITableView only moves in one direction, y axis
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+
+        // Change 10.0 to adjust the distance from bottom
+        if maximumOffset - currentOffset <= scrollView.contentSize.height / 2 {
+            viewModel.loadPokemonList()
+        }
+    }
+}
+
 private extension PokemonListViewController {
     func binding() {
-        viewModel.loadPokemonList().sink { completion in
-            
-        } receiveValue: { model in
-            
+        viewModel.loadPokemonList()
+        
+        viewModel.didLoadPokemonList.sink { result in
+            print(result)
+        } receiveValue: { _ in
+            self.collectionView.reloadData()
+        }.store(in: &cancelBag)
+        
+        viewModel.didLoadPokemonDetail.sink { index in
+            self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
         }.store(in: &cancelBag)
     }
 }
@@ -71,8 +91,6 @@ private extension PokemonListViewController {
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        collectionView.reloadData()
     }
     
     func makeCollectionView() -> UICollectionView {

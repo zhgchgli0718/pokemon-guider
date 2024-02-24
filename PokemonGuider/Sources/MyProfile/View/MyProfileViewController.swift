@@ -55,7 +55,7 @@ private extension MyProfileViewController {
     func makeSubTitleLabel() -> UILabel {
         let label = UILabel()
         label.text = NSLocalizedString("to_be_continuted", comment: "敬請期待")
-        label.textColor = UIColor(named: "salmonColor")
+        label.textColor = .salmon
         label.textAlignment = .center
         return label
     }

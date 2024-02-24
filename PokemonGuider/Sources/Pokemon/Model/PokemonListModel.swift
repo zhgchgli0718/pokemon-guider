@@ -29,9 +29,11 @@ extension PokemonListModel {
     class Item {
         let name: String
         let url: String
+        let id: String
         init(name: String, url: String) {
             self.name = name
             self.url = url
+            self.id = URL(string: url)?.lastPathComponent ?? url
         }
     }
 }

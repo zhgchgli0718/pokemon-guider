@@ -39,7 +39,14 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             typesStackView.addArrangedSubview(button)
         }
         typesStackView.addArrangedSubview(UIView())
-        coverImageView.setImage(url: viewObject.coverImage)
+        
+        if let coverImage = viewObject.coverImage {
+            coverImageView.setImage(url: coverImage)
+            coverImageView.backgroundColor = .clear
+        } else {
+            coverImageView.image = nil
+            coverImageView.backgroundColor = .lightGray
+        }
     }
 }
 
@@ -98,8 +105,9 @@ private extension PokemonCollectionViewCell {
     
     func makeCoverImageView() -> UIImageView {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .lightGray
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
     }
     

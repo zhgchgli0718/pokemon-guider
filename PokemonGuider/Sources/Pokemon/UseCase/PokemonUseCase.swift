@@ -9,17 +9,22 @@ import Foundation
 import Combine
 
 protocol PokemonUseCaseSpec {
-    func getPokemonList() -> AnyPublisher<PokemonListModel, Error>
+    func getPokemonList(nextPage: String?) -> AnyPublisher<PokemonListModel, Error>
+    func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error>
 }
 
 final class PokemonUseCase: PokemonUseCaseSpec {
-    
+
     let repository: PokemonRepositorySpec
     init(repository: PokemonRepositorySpec = PokemonRepository()) {
         self.repository = repository
     }
     
-    func getPokemonList() -> AnyPublisher<PokemonListModel, Error> {
-        return repository.getPokemonList()
+    func getPokemonList(nextPage: String?) -> AnyPublisher<PokemonListModel, Error> {
+        return repository.getPokemonList(nextPage: nextPage)
+    }
+    
+    func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error> {
+        return repository.getPokemonDetail(id: id)
     }
 }

@@ -9,7 +9,8 @@ import Foundation
 import Moya
 
 enum PokemonAPITarget {
-    case getPokemonList
+    case getPokemonList(String?)
+    case getPokemonDetail(String)
 }
 
 extension PokemonAPITarget: TargetType {
@@ -17,18 +18,28 @@ extension PokemonAPITarget: TargetType {
     var path: String {
         switch self {
         case .getPokemonList:
-            return "/pokemon"
+            return "/pokemon/"
+        case .getPokemonDetail(let id):
+            return "/pokemon/\(id)/"
         }
     }
     var method: Moya.Method {
         switch self {
-        case .getPokemonList:
+        case .getPokemonList, .getPokemonDetail:
             return .get
         }
     }
     var task: Task {
         switch self {
-        case .getPokemonList:
+        case .getPokemonList(let nextPage):
+            var parameters: [String: String] = [:]
+            if let nextPage = nextPage, let urlComponents = URLComponents(string: nextPage) {
+                urlComponents.queryItems?.forEach({ queryItem in
+                    parameters[queryItem.name] = queryItem.value
+                })
+            }
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case .getPokemonDetail:
             return .requestPlain
         }
     }
