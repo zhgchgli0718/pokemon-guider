@@ -9,14 +9,20 @@ import Foundation
 import UIKit
 import Combine
 
+protocol PokemonListViewControllerDelegate: AnyObject {
+    func pokemonListViewController(_ viewController: PokemonListViewController, pokemonDidTap id: String)
+}
+
 final class PokemonListViewController: UIViewController {
     
     private var cancelBag = Set<AnyCancellable>()
-    private let viewModel: PokemonViewModelSpec
+    private let viewModel: PokemonListViewModelSpec
     
     private lazy var collectionView = makeCollectionView()
     
-    init(viewModel: PokemonViewModelSpec = PokemonViewModel()) {
+    weak var delegate: PokemonListViewControllerDelegate?
+    
+    init(viewModel: PokemonListViewModelSpec = PokemonListViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -39,6 +45,7 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.className, for: indexPath)
         guard let cell = cell as? PokemonCollectionViewCell else { return cell }
+        cell.delegate = self
         cell.configure(viewObject: viewModel.cellViewObjects[indexPath.row])
         return cell
     }
@@ -57,16 +64,22 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
 extension PokemonListViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 
-        // UITableView only moves in one direction, y axis
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-
-        // Change 10.0 to adjust the distance from bottom
+        
+        // Load More...
         if maximumOffset - currentOffset <= scrollView.contentSize.height / 2 {
             viewModel.loadPokemonList()
         }
     }
 }
+
+extension PokemonListViewController: PokemonCollectionViewCellDelegate {
+    func pokemonCollectionViewCell(_ view: PokemonCollectionViewCell, viewDidTap id: String) {
+        delegate?.pokemonListViewController(self, pokemonDidTap: id)
+    }
+}
+
 
 private extension PokemonListViewController {
     func binding() {
@@ -86,7 +99,7 @@ private extension PokemonListViewController {
 
 private extension PokemonListViewController {
     func layoutUI() {
-        navigationItem.title = NSLocalizedString("pokemon_list", comment: "寶可夢")
+        navigationItem.title = NSLocalizedString("pokemon_list", comment: "所有寶可夢")
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

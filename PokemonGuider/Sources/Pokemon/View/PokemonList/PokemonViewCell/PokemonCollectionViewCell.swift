@@ -8,12 +8,20 @@
 import UIKit
 import SnapKit
 
+protocol PokemonCollectionViewCellDelegate: AnyObject {
+    func pokemonCollectionViewCell(_ view: PokemonCollectionViewCell, viewDidTap id: String)
+}
+
 class PokemonCollectionViewCell: UICollectionViewCell {
     private lazy var idView = makeIDView()
     private lazy var idLabel = makeIDLabel()
     private lazy var coverImageView = makeCoverImageView()
     private lazy var nameLabel = makeNameLabel()
     private lazy var typesStackView = makeTypesStackView()
+    
+    weak var delegate: PokemonCollectionViewCellDelegate?
+    
+    private var viewObject: PokemonCellViewObject?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -31,6 +39,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(viewObject: PokemonCellViewObject) {
+        self.viewObject = viewObject
+        
         nameLabel.text = viewObject.name
         idLabel.text = viewObject.id
         viewObject.types.forEach { type in
@@ -88,6 +98,8 @@ private extension PokemonCollectionViewCell {
             make.edges.equalTo(idView.snp.edges).inset(5)
         }
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
+        self.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func makeIDView() -> UIView {
@@ -134,5 +146,12 @@ private extension PokemonCollectionViewCell {
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .systemFont(ofSize: 12)
         return button
+    }
+}
+
+private extension PokemonCollectionViewCell {
+    @objc func viewDidTap() {
+        guard let id = viewObject?.id else { return }
+        delegate?.pokemonCollectionViewCell(self, viewDidTap: id)
     }
 }

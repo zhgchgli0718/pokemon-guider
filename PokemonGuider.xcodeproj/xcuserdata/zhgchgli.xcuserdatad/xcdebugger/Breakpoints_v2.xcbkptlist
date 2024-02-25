@@ -62,8 +62,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/PokemonCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "start()"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +254,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,8 +334,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "scrollViewDidEndDragging(_:willDecelerate:)"
             landmarkType = "7">
             <Locations>
@@ -382,8 +382,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "scrollViewDidEndDragging(_:willDecelerate:)"
             landmarkType = "7">
             <Locations>
@@ -430,8 +430,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "binding()"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,8 +446,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "binding()"
             landmarkType = "7">
             <Locations>
@@ -494,8 +494,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "binding()"
             landmarkType = "7">
             <Locations>
@@ -574,8 +574,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/Model/PokemonDetailModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "init(entity:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -641,6 +641,182 @@
                   offsetFromSymbolStart = "44">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FAA12CC8-1C74-4C04-B509-BA6E796E6A66"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "pokemonCollectionViewCell(_:viewDidTap:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FAA12CC8-1C74-4C04-B509-BA6E796E6A66 - ed598526b7c0359"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuider.PokemonListViewController.binding() -&gt; ()"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "FAA12CC8-1C74-4C04-B509-BA6E796E6A66 - 3ea8f5339bc20e69"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuider.PokemonListViewController.pokemonCollectionViewCell(_: PokemonGuider.PokemonCollectionViewCell, viewDidTap: Swift.String) -&gt; ()"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "801CDD1E-EC60-452B-9BC3-F7230B333A21"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Pokemon/View/PokemonList/PokemonViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "loadPokemonList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1C97778-9C0B-4D19-A187-EAECE783DA80"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "layoutUI()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F1C97778-9C0B-4D19-A187-EAECE783DA80 - d1f2e0d8afc257e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuider.PokemonDetailViewController.layoutUI() -&gt; ()"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "1720">
+               </Location>
+               <Location
+                  uuid = "F1C97778-9C0B-4D19-A187-EAECE783DA80 - af34c8798a1fd1fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (SnapKit.ConstraintMaker) -&gt; () in PokemonGuider.PokemonDetailViewController.layoutUI() -&gt; ()"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8DC14D1-1859-4773-BBB8-0469ED8FC585"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "layoutUI()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C8DC14D1-1859-4773-BBB8-0469ED8FC585 - d1f2e0d8afc22e06"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuider.PokemonDetailViewController.layoutUI() -&gt; ()"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "2616">
+               </Location>
+               <Location
+                  uuid = "C8DC14D1-1859-4773-BBB8-0469ED8FC585 - 3e2efe3e6c910418"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #9 (SnapKit.ConstraintMaker) -&gt; () in PokemonGuider.PokemonDetailViewController.layoutUI() -&gt; ()"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0AD4BBA4-CF5F-49E4-9BAD-5DFA90951A9E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "evolutionChainButtonDidTap(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

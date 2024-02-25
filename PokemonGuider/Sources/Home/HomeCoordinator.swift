@@ -47,7 +47,7 @@ private extension HomeCoordinator {
             case .pokemonList:
                 let navigationController = UINavigationController()
                 let coordinator = PokemonCoordinator(navigationController: navigationController)
-                navigationController.title = NSLocalizedString("pokemon_list", comment: "寶可夢")
+                navigationController.title = NSLocalizedString("pokemon_list", comment: "所有寶可夢")
                 navigationController.tabBarItem.image = UIImage(systemName: "lizard.circle")
                 navigationController.navigationBar.prefersLargeTitles = true
                 return (navigationController, coordinator)

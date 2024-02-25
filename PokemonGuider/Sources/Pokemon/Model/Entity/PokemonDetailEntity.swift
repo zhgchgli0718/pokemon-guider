@@ -12,14 +12,19 @@ struct PokemonDetailEntity: Decodable {
     let name: String
     let types: [PokemonTypes]
     let sprites: Sprites
+    let stats: [Stats]
 }
 
 extension PokemonDetailEntity {
     struct Sprites: Decodable {
-        enum CodingKeys: String, CodingKey {
-            case frontDefault = "front_default"
-        }
-        let frontDefault: String
+        let back_default: String?
+        let back_female: String?
+        let back_shiny: String?
+        let back_shiny_female: String?
+        let front_default: String?
+        let front_female: String?
+        let front_shiny: String?
+        let front_shiny_female: String?
     }
     struct PokemonTypes: Decodable {
         let type: PokemonType
@@ -27,5 +32,14 @@ extension PokemonDetailEntity {
             let name: String
             let url: String
         }
+    }
+    struct Stats: Decodable {
+        struct Stat: Decodable {
+            let name: String
+            let url: String
+        }
+        let base_stat: Int
+        let effort: Int
+        let stat: Stat
     }
 }

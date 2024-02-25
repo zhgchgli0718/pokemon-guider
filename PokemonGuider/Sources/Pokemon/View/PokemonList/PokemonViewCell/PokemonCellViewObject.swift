@@ -24,6 +24,11 @@ struct PokemonCellViewObject {
         self.name = model.name
         self.id = model.id
         self.types = model.types.map { $0.name }
-        self.coverImage = URL(string: model.coverImage)
+        
+        if let coverImage = model.coverImage {
+            self.coverImage = URL(string: coverImage)
+        } else {
+            self.coverImage = nil
+        }
     }
 }

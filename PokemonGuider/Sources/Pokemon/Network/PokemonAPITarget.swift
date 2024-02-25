@@ -11,6 +11,8 @@ import Moya
 enum PokemonAPITarget {
     case getPokemonList(String?)
     case getPokemonDetail(String)
+    case getPokemonPokedex(String)
+    case getPokemonEvolutionChain(String)
 }
 
 extension PokemonAPITarget: TargetType {
@@ -21,11 +23,15 @@ extension PokemonAPITarget: TargetType {
             return "/pokemon/"
         case .getPokemonDetail(let id):
             return "/pokemon/\(id)/"
+        case .getPokemonPokedex(let id):
+            return "/pokedex/\(id)/"
+        case .getPokemonEvolutionChain(let id):
+            return "/evolution-chain/\(id)/"
         }
     }
     var method: Moya.Method {
         switch self {
-        case .getPokemonList, .getPokemonDetail:
+        case .getPokemonList, .getPokemonDetail, .getPokemonPokedex, .getPokemonEvolutionChain:
             return .get
         }
     }
@@ -39,7 +45,7 @@ extension PokemonAPITarget: TargetType {
                 })
             }
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
-        case .getPokemonDetail:
+        case .getPokemonDetail, .getPokemonPokedex, .getPokemonEvolutionChain:
             return .requestPlain
         }
     }

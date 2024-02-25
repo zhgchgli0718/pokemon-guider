@@ -6,8 +6,18 @@
   
 */
 
-"pokemon_list" = "寶可夢";
+"pokemon_list" = "所有寶可夢";
 
 "my_profile" = "帳戶中心";
 
 "to_be_continuted" = "敬請期待";
+
+"own" = "收錄";
+
+"stat" = "屬性";
+
+"stat_base" = "數值";
+
+"stat_effort" = "效果";
+
+"evolution" = "進化";

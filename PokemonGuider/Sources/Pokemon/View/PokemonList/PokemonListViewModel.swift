@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Moya
 
-protocol PokemonViewModelSpec {
+protocol PokemonListViewModelSpec {
     var cellViewObjects: [PokemonCellViewObject] { get }
    
     var didLoadPokemonList: PassthroughSubject<PokemonListModel, Error> { get }
@@ -18,7 +18,7 @@ protocol PokemonViewModelSpec {
     func loadPokemonList()
 }
 
-final class PokemonViewModel: PokemonViewModelSpec {
+final class PokemonListViewModel: PokemonListViewModelSpec {
     
     private(set) var didLoadPokemonList: PassthroughSubject<PokemonListModel, Error> = .init()
     private(set) var didLoadPokemonDetail: PassthroughSubject<Int, Never> = .init()
