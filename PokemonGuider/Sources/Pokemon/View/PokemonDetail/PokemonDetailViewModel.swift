@@ -13,6 +13,10 @@ protocol PokemonDetailViewModelSpec {
     func loadPokemonDetail() -> AnyPublisher<PokemonDetailModel, Error>
     func loadPokemonPokedex() -> AnyPublisher<PokemonPokedexModel, Error>
     func loadPokemonEvolutionChain() -> AnyPublisher<[PokemonDetailModel], Error>
+    
+    func isOwnedPokemon() -> Bool
+    func ownPokemon(owned: Bool)
+    func ownedPokemonChanges() -> AnyPublisher<Bool, Never>
 }
 
 final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
@@ -39,6 +43,23 @@ final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
             return model.chainNames.publisher.flatMap{ self.useCase.getPokemonDetail(name: $0) }.eraseToAnyPublisher()
         }.scan([], { accumulator, value in
             accumulator + [value]
+        }).eraseToAnyPublisher()
+    }
+    
+    func ownPokemon(owned: Bool) {
+        useCase.ownPokemon(id: id, owned: owned)
+    }
+    
+    func isOwnedPokemon() -> Bool {
+        return useCase.isOwnedPokemon(id: id)
+    }
+    
+    func ownedPokemonChanges() -> AnyPublisher<Bool, Never> {
+        return useCase.ownedPokemonChanges().compactMap({ (id, owned) in
+            guard id == self.id else {
+                return nil
+            }
+            return owned
         }).eraseToAnyPublisher()
     }
 }

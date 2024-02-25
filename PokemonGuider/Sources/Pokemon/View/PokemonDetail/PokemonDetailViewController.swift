@@ -86,6 +86,13 @@ private extension PokemonDetailViewController {
         } receiveValue: { model in
             self.configureEvolutionChainStackView(models: model)
         }.store(in: &cancelBag)
+        //
+        ownButton.isSelected = viewModel.isOwnedPokemon()
+        //
+        viewModel.ownedPokemonChanges().sink { owned in
+            self.ownButton.isSelected = owned
+        }.store(in: &cancelBag)
+        
     }
 }
 
@@ -197,8 +204,12 @@ private extension PokemonDetailViewController {
         button.backgroundColor = .salmon
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .systemFont(ofSize: 18)
+        
         button.setTitleColor(.white, for: .normal)
         button.setTitle(NSLocalizedString("own", comment: "收錄"), for: .normal)
+        button.setTitle(NSLocalizedString("owned", comment: "已收錄"), for: .selected)
+
+        button.addTarget(self, action: #selector(ownButtonDidTap(_:)), for: .touchUpInside)
         return button
     }
     
@@ -335,6 +346,10 @@ private extension PokemonDetailViewController {
     @objc func evolutionChainButtonDidTap(_ button: ClickableButton) {
         guard let id = button.id else { return }
         delegate?.pokemonDetailViewController(self, pokemonDidTap: id)
+    }
+    
+    @objc func ownButtonDidTap(_ button: UIButton) {
+        viewModel.ownPokemon(owned: !button.isSelected)
     }
 }
 

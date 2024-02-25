@@ -11,6 +11,7 @@ struct PokemonCellViewObject {
     let name: String
     let id: String
     let types: [String]
+    var owned: Bool = false
     let coverImage: URL?
     
     init(item: PokemonListModel.Item) {
@@ -18,6 +19,7 @@ struct PokemonCellViewObject {
         self.id = item.id
         self.types = []
         self.coverImage = nil
+        self.owned = false
     }
     
     init(model: PokemonDetailModel) {

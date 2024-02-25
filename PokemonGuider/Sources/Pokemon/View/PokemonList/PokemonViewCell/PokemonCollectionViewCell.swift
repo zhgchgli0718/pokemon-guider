@@ -10,6 +10,7 @@ import SnapKit
 
 protocol PokemonCollectionViewCellDelegate: AnyObject {
     func pokemonCollectionViewCell(_ view: PokemonCollectionViewCell, viewDidTap id: String)
+    func pokemonCollectionViewCell(_ view: PokemonCollectionViewCell, starDidTap id: String, owned: Bool)
 }
 
 class PokemonCollectionViewCell: UICollectionViewCell {
@@ -18,6 +19,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     private lazy var coverImageView = makeCoverImageView()
     private lazy var nameLabel = makeNameLabel()
     private lazy var typesStackView = makeTypesStackView()
+    private lazy var ownStarButton = makeOwnStarButton()
     
     weak var delegate: PokemonCollectionViewCellDelegate?
     
@@ -57,6 +59,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             coverImageView.image = nil
             coverImageView.backgroundColor = .lightGray
         }
+        
+        ownStarButton.isSelected = viewObject.owned
     }
 }
 
@@ -68,6 +72,7 @@ private extension PokemonCollectionViewCell {
         self.addSubview(typesStackView)
         self.addSubview(idView)
         self.addSubview(idLabel)
+        self.addSubview(ownStarButton)
         
         coverImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(12)
@@ -96,6 +101,11 @@ private extension PokemonCollectionViewCell {
         
         idLabel.snp.makeConstraints { make in
             make.edges.equalTo(idView.snp.edges).inset(5)
+        }
+        
+        ownStarButton.snp.makeConstraints { make in
+            make.top.equalTo(coverImageView.snp.top)
+            make.trailing.equalTo(coverImageView.snp.trailing)
         }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
@@ -147,11 +157,26 @@ private extension PokemonCollectionViewCell {
         button.titleLabel?.font = .systemFont(ofSize: 12)
         return button
     }
+    
+    func makeOwnStarButton() -> UIButton {
+        var configuration = UIButton.Configuration.filled()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        let button = UIButton(configuration: configuration)
+        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.setImage(UIImage(systemName: "star.fill"), for: .selected)
+        button.addTarget(self, action: #selector(ownedStar(_:)), for: .touchUpInside)
+        return button
+    }
 }
 
 private extension PokemonCollectionViewCell {
     @objc func viewDidTap() {
         guard let id = viewObject?.id else { return }
         delegate?.pokemonCollectionViewCell(self, viewDidTap: id)
+    }
+    
+    @objc func ownedStar(_ button: UIButton) {
+        guard let id = viewObject?.id else { return }
+        delegate?.pokemonCollectionViewCell(self, starDidTap: id, owned: !button.isSelected)
     }
 }

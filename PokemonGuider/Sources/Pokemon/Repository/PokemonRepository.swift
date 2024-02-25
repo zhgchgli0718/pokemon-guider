@@ -9,6 +9,7 @@ import Foundation
 import Moya
 import Combine
 import CombineMoya
+import CoreData
 
 protocol PokemonRepositorySpec {
     func getPokemonList(nextPage: String?) -> AnyPublisher<PokemonListModel, Error>

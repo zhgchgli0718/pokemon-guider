@@ -78,6 +78,10 @@ extension PokemonListViewController: PokemonCollectionViewCellDelegate {
     func pokemonCollectionViewCell(_ view: PokemonCollectionViewCell, viewDidTap id: String) {
         delegate?.pokemonListViewController(self, pokemonDidTap: id)
     }
+    
+    func pokemonCollectionViewCell(_ view: PokemonCollectionViewCell, starDidTap id: String, owned: Bool) {
+        viewModel.ownPokemon(id: id, owned: owned)
+    }
 }
 
 
@@ -86,7 +90,7 @@ private extension PokemonListViewController {
         viewModel.loadPokemonList()
         
         viewModel.didLoadPokemonList.sink { result in
-            print(result)
+            //
         } receiveValue: { _ in
             self.collectionView.reloadData()
         }.store(in: &cancelBag)
@@ -94,6 +98,10 @@ private extension PokemonListViewController {
         viewModel.didLoadPokemonDetail.sink { index in
             self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
         }.store(in: &cancelBag)
+        
+        viewModel.ownedPokemonChanges().sink(receiveValue: { (index, owned) in
+            self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+        }).store(in: &cancelBag)
     }
 }
 
