@@ -13,6 +13,7 @@ protocol CoreDataRespositorySpec {
     func ownedPokemonChanges() -> AnyPublisher<(String, Bool), Never>
     func savePokemon(id: String, name: String?, owned: Bool?)
     func isOwnedPokemon(id: String) -> Bool
+    func getAllOwnedPokemons() -> PokemonListModel
 }
 
 final class CoreDataRespository: NSObject, CoreDataRespositorySpec {
@@ -62,6 +63,25 @@ final class CoreDataRespository: NSObject, CoreDataRespositorySpec {
     
     func ownedPokemonChanges() -> AnyPublisher<(String, Bool), Never> {
         return pokemonChanges.eraseToAnyPublisher()
+    }
+    
+    func getAllOwnedPokemons() -> PokemonListModel {
+        let fetchRequest = NSFetchRequest<PokemonDetailCoreDataEntity>(entityName: PokemonDetailCoreDataEntity.className)
+        fetchRequest.predicate = NSPredicate(format: "owned == %@", "1")
+
+        do {
+            let results = try readContext.fetch(fetchRequest)
+            let items = results.compactMap { entity -> PokemonListEntity.Item? in
+                guard let id = entity.id else {
+                   return nil
+                }
+                return PokemonListEntity.Item(name: entity.name ?? "", url: "https://pokeapi.co/api/v2/pokemon/\(id)/")
+            }
+            return PokemonListModel(entity: PokemonListEntity(count: items.count, next: nil, previous: nil, results: items))
+        } catch {
+            print(error)
+        }
+        return PokemonListModel(entity: PokemonListEntity(count: 0, next: nil, previous: nil, results: []))
     }
 }
 

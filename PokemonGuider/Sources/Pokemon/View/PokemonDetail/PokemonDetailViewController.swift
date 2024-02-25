@@ -206,8 +206,8 @@ private extension PokemonDetailViewController {
         button.titleLabel?.font = .systemFont(ofSize: 18)
         
         button.setTitleColor(.white, for: .normal)
-        button.setTitle(NSLocalizedString("own", comment: "收錄"), for: .normal)
-        button.setTitle(NSLocalizedString("owned", comment: "已收錄"), for: .selected)
+        button.setTitle(NSLocalizedString("own", comment: "收藏"), for: .normal)
+        button.setTitle(NSLocalizedString("owned", comment: "已收藏"), for: .selected)
 
         button.addTarget(self, action: #selector(ownButtonDidTap(_:)), for: .touchUpInside)
         return button

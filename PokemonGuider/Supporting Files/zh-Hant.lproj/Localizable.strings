@@ -12,7 +12,7 @@
 
 "to_be_continuted" = "敬請期待";
 
-"own" = "收錄";
+"own" = "收藏";
 
 "stat" = "屬性";
 
@@ -22,4 +22,8 @@
 
 "evolution" = "進化";
 
-"owned" = "已收錄";
+"owned" = "已收藏";
+
+"grid_view" = "格狀檢視";
+
+"list_view" = "列表檢視";
