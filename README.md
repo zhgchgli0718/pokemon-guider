@@ -1,4 +1,6 @@
 # Pokemon Guider!
+[![Pokemon Guider](https://img.youtube.com/vi/rgY6l_fPERI/0.jpg)](https://www.youtube.com/watch?v=rgY6l_fPERI)
+
 # Features
 ## 列表頁面
 - [x] Pokemon 基本訊息
