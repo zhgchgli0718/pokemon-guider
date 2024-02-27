@@ -16,7 +16,7 @@ struct PokemonCellViewObject {
     
     init(model: PokemonDetailModel) {
         self.name = model.name
-        self.owned = model.owned
+        self.owned = model.owned ?? false
         self.id = model.id
         self.types = model.types.map { $0.name }
         

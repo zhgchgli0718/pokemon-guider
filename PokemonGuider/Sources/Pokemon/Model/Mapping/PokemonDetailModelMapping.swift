@@ -22,7 +22,7 @@ struct PokemonDetailModelMapping {
             entity.sprites.front_shiny_female
         ].compactMap { $0 }
         let stats = entity.stats.map { PokemonDetailModel.Stat(name: $0.stat.name, url: $0.stat.url, baseStat: $0.base_stat, effort: $0.effort) }
-        return PokemonDetailModel(id: String(entity.id), name: entity.name, types: types, coverImage: entity.sprites.front_default, images: images, stats: stats, owned: false)
+        return PokemonDetailModel(id: String(entity.id), name: entity.name, types: types, coverImage: entity.sprites.front_default, images: images, stats: stats, owned: nil)
     }
     
     static func mapping(managedObject: PokemonDetailManagedObject) -> PokemonDetailModel {

@@ -37,11 +37,12 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         // Clean StackView
-        typesStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
     }
     
     func configure(viewObject: PokemonCellViewObject) {
         self.viewObject = viewObject
+        
+        typesStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
         
         nameLabel.text = viewObject.name
         idLabel.text = viewObject.id

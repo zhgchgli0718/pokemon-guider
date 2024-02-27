@@ -75,7 +75,7 @@ private extension PokemonDetailViewController {
         ownButton.isSelected = viewModel.isOwnedPokemon()
         //
         viewModel.ownedPokemonChanges().sink { detailModel in
-            self.ownButton.isSelected = detailModel.owned
+            self.ownButton.isSelected = detailModel.owned ?? false
         }.store(in: &cancelBag)
         
     }

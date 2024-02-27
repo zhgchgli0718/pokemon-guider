@@ -20,10 +20,10 @@ class SaveToCoreDataVisitor: SaveableVisitor {
     
     func visit(_ model: PokemonDetailModel) {
         let predicate = NSPredicate(format: "id == %@", model.id)
-        var managedObject = CoreDataManager.findFirstOrCreate(PokemonDetailManagedObject.self, predicate: predicate, context: context)
+        let managedObject = CoreDataManager.findFirstOrCreate(PokemonDetailManagedObject.self, predicate: predicate, context: context)
         managedObject.id = model.id
         managedObject.name = model.name
-        managedObject.owned = model.owned
+        managedObject.owned = model.owned ?? managedObject.owned
         managedObject.coverImage = model.coverImage
         managedObject.images = model.images
         

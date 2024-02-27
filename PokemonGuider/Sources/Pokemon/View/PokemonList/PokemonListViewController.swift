@@ -133,6 +133,7 @@ private extension PokemonListViewController {
         }.store(in: &cancelBag)
         
         viewModel.ownedPokemonChanges().sink(receiveValue: { indexPath in
+            (self.collectionView.cellForItem(at: indexPath) as? PokemonCollectionViewCell)?.configure(viewObject: self.viewModel.cellViewObjects[indexPath.row])
             self.collectionView.reloadItems(at: [indexPath])
         }).store(in: &cancelBag)
     }

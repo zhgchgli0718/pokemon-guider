@@ -15,9 +15,9 @@ final class PokemonDetailModel {
     let coverImage: String?
     let images: [String]
     let stats: [Stat]
-    var owned: Bool
+    var owned: Bool?
     
-    init(id: String, name: String, types: [PokemonType], coverImage: String?, images: [String], stats: [Stat], owned: Bool) {
+    init(id: String, name: String, types: [PokemonType], coverImage: String?, images: [String], stats: [Stat], owned: Bool?) {
         self.id = id
         self.name = name
         self.types = types
