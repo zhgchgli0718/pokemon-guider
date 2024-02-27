@@ -29,8 +29,8 @@
 - [x] 收藏 Pokemon，列表會同步狀態
 ### Dev Notes
 1. 使用 `https://pokeapi.co/api/v2/pokemon/\(id)` 取得寶可夢詳細資訊，Images 使用 `sprites` 所有圖片
-2. 使用 `https://pokeapi.co/api/v2/pokedex/\(id)` 取得寶可夢 Evolution chain
-3. 使用 `https://pokeapi.co/api/v2/evolution-chain/\(id)` 取得寶可夢 Pokedex description text，並依照當前語系呈現內容(`description`)
+2. 使用 `https://pokeapi.co/api/v2/pokedex/\(id)` 取得寶可夢 Pokedex description text，並依照當前語系呈現內容(`description`)
+3. 使用 `https://pokeapi.co/api/v2/evolution-chain/\(id)` 取得寶可夢 Evolution chain，再分別請求 `https://pokeapi.co/api/v2/pokemon/\(id)` 取得寶可夢 `Name`，最終組合呈現給 UI
 4. 使用 CoreData 儲存、同步 Pokemon 收藏狀態
 ## Others
 - [x] Writing unit tests.
