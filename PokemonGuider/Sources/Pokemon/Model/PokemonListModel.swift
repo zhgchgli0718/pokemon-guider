@@ -13,15 +13,11 @@ final class PokemonListModel {
     let previous: String?
     let results: [Item]
     
-    var hasNext: Bool {
-        return next != nil
-    }
-
-    init(entity: PokemonListEntity) {
-        self.count = entity.count
-        self.next = entity.next
-        self.previous = entity.previous
-        self.results = entity.results.map{ Item(name: $0.name, url: $0.url) }
+    init(count: Int, next: String?, previous: String?, results: [Item]) {
+        self.count = count
+        self.next = next
+        self.previous = previous
+        self.results = results
     }
 }
 

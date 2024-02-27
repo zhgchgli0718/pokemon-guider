@@ -25,22 +25,22 @@ final class PokemonRepository: PokemonRepositorySpec {
     private lazy var jsonDecoder = JSONDecoder()
     
     func getPokemonList(nextPage: String?) -> AnyPublisher<PokemonListModel, Error> {
-        return provider.requestPublisher(.getPokemonList(nextPage)).map(PokemonListEntity.self).map{ PokemonListModel(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
+        return provider.requestPublisher(.getPokemonList(nextPage)).map(PokemonListEntity.self).map{ PokemonListModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
     }
     
     func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error> {
-        return provider.requestPublisher(.getPokemonDetail(id)).map(PokemonDetailEntity.self).map{ PokemonDetailModel(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
+        return provider.requestPublisher(.getPokemonDetail(id)).map(PokemonDetailEntity.self).map{ PokemonDetailModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
     }
     
     func getPokemonDetail(name: String) -> AnyPublisher<PokemonDetailModel, Error> {
-        return provider.requestPublisher(.getPokemonDetail(name)).map(PokemonDetailEntity.self).map{ PokemonDetailModel(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
+        return provider.requestPublisher(.getPokemonDetail(name)).map(PokemonDetailEntity.self).map{ PokemonDetailModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
     }
     
     func getPokemonPokedex(id: String) -> AnyPublisher<PokemonPokedexModel, Error> {
-        return provider.requestPublisher(.getPokemonPokedex(id)).map(PokemonPokedexEntity.self).map{ PokemonPokedexModel(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
+        return provider.requestPublisher(.getPokemonPokedex(id)).map(PokemonPokedexEntity.self).map{ PokemonPokedexModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
     }
     
     func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonEvolutionChainModel, Error> {
-        return provider.requestPublisher(.getPokemonEvolutionChain(id)).map(PokemonEvolutionChainEntity.self).map{ PokemonEvolutionChainModel(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
+        return provider.requestPublisher(.getPokemonEvolutionChain(id)).map(PokemonEvolutionChainEntity.self).map{ PokemonEvolutionChainModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
     }
 }

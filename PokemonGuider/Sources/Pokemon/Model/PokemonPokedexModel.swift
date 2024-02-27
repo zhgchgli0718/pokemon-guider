@@ -9,7 +9,7 @@ import Foundation
 
 final class PokemonPokedexModel {
     let descriptions: [Description]
-    var currentLanguageDescription: Description? {
+    lazy var currentLanguageDescription: Description? = {
         var language = Locale.current.language.languageCode?.identifier ?? "en"
         
         if let matchLanguage = descriptions.first(where: { $0.language.name == language }) {
@@ -22,10 +22,10 @@ final class PokemonPokedexModel {
         }
         
         return descriptions.first
-    }
+    }()
     
-    init(entity: PokemonPokedexEntity) {
-        self.descriptions = entity.descriptions.map { Description(description: $0.description, language: .init(name: $0.language.name, url: $0.language.url)) }
+    init(descriptions: [Description]) {
+        self.descriptions = descriptions
     }
 }
 

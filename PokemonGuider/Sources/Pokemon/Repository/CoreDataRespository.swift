@@ -50,7 +50,7 @@ final class CoreDataRespository: NSObject, CoreDataRespositorySpec {
         guard let managedObject = CoreDataManager.findFirst(PokemonDetailManagedObject.self, predicate: NSPredicate(format: "id == %@", id), context: context) else {
             return nil
         }
-        return PokemonDetailModel(managedObject: managedObject)
+        return PokemonDetailModelMapping.mapping(managedObject: managedObject)
     }
     
     func isOwnedPokemon(id: String) -> Bool {
@@ -70,7 +70,7 @@ final class CoreDataRespository: NSObject, CoreDataRespositorySpec {
     }
     
     func getAllOwnedPokemons() -> [PokemonDetailModel] {
-        return CoreDataManager.findAll(PokemonDetailManagedObject.self, predicate: NSPredicate(format: "owned == %@", "1"), context: context).map { PokemonDetailModel(managedObject: $0) }
+        return CoreDataManager.findAll(PokemonDetailManagedObject.self, predicate: NSPredicate(format: "owned == %@", "1"), context: context).map { PokemonDetailModelMapping.mapping(managedObject: $0) }
     }
 }
 
@@ -79,6 +79,6 @@ extension CoreDataRespository: NSFetchedResultsControllerDelegate {
         guard let managedObject = anObject as? PokemonDetailManagedObject else {
             return
         }
-        pokemonChanges.send(PokemonDetailModel(managedObject: managedObject))
+        pokemonChanges.send(PokemonDetailModelMapping.mapping(managedObject: managedObject))
     }
 }

@@ -40,7 +40,7 @@ final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
     
     func loadPokemonEvolutionChain() -> AnyPublisher<[PokemonDetailModel], Error> {
         return useCase.getPokemonEvolutionChain(id: id).flatMap { model in
-            return model.chainNames.publisher.flatMap{ self.useCase.getPokemonDetail(name: $0) }.eraseToAnyPublisher()
+            return model.chainSpecies.publisher.flatMap{ self.useCase.getPokemonDetail(name: $0.name) }.eraseToAnyPublisher()
         }.scan([], { accumulator, value in
             accumulator + [value]
         }).eraseToAnyPublisher()
