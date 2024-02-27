@@ -37,28 +37,11 @@ public class CoreDataManager: NSObject {
         return container
     }()
     
-    private var viewContext: NSManagedObjectContext {
-        return container.viewContext
-    }
-    
-    public static var defaultBackgroundContext: NSManagedObjectContext {
-        return Self.newBackgroundContext()
-    }
-    
     static var viewContext: NSManagedObjectContext {
-        return CoreDataManager.shared.viewContext
+        return CoreDataManager.shared.container.viewContext
     }
     
-    static func save(context: NSManagedObjectContext?) {
-        guard let context = context else {
-            print("No context on save")
-            return
-        }
-        
-        if context == CoreDataManager.viewContext {
-            print("Writing to view context, this should be avoided.")
-        }
-        
+    static func save(context: NSManagedObjectContext) {
         context.perform {
             if !context.hasChanges { return }
             
@@ -70,9 +53,37 @@ public class CoreDataManager: NSObject {
         }
     }
     
-    static func newBackgroundContext() -> NSManagedObjectContext {
-        let backgroundContext = CoreDataManager.shared.container.newBackgroundContext()
-        backgroundContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
-        return backgroundContext
+    static func findFirst<T: NSManagedObject>(_ managedObject: T.Type, predicate: NSPredicate, context: NSManagedObjectContext) -> T? {
+        let fetchRequest = NSFetchRequest<T>(entityName: T.className)
+        fetchRequest.predicate = predicate
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let existingObject = results.first {
+                return existingObject
+            }
+        } catch {
+            print(error)
+        }
+        
+        return nil
+    }
+    
+    static func findAll<T: NSManagedObject>(_ managedObject: T.Type, predicate: NSPredicate, context: NSManagedObjectContext) -> [T] {
+        let fetchRequest = NSFetchRequest<T>(entityName: T.className)
+        fetchRequest.predicate = predicate
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            return results
+        } catch {
+            print(error)
+        }
+        
+        return []
+    }
+    
+    static func findFirstOrCreate<T: NSManagedObject>(_ managedObject: T.Type, predicate: NSPredicate, context: NSManagedObjectContext) -> T {
+        return self.findFirst(managedObject, predicate: predicate, context: context) ?? T(context: context)
     }
 }

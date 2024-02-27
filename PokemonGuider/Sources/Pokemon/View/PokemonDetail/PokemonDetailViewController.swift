@@ -27,6 +27,7 @@ final class PokemonDetailViewController: UIViewController {
     private lazy var pokedexLabel = makePokedexLabel()
     private lazy var statTitleLabel = makeStatTitleLabel()
     private lazy var evolutionChainTitleLabel = makeEvolutionChainTitleLabel()
+    private lazy var imagesPageControl = makeImagesPageControl()
     
     private var cancelBag = Set<AnyCancellable>()
     private let viewModel: PokemonDetailViewModelSpec
@@ -54,25 +55,9 @@ private extension PokemonDetailViewController {
             //
         } receiveValue: { model in
             self.navigationItem.title = model.name
-            model.images.forEach { image in
-                if let imageURL = URL(string: image) {
-                    let imageView = self.makeCoverImage()
-                    imageView.setImage(url: imageURL)
-                    self.coverImageViewsStackView.addArrangedSubview(imageView)
-                    imageView.snp.makeConstraints { make in
-                        make.width.equalTo(self.view.snp.width)
-                    }
-                }
-            }
-            
-            model.types.forEach { type in
-                let button = self.makeTypeButton()
-                button.setTitle(type.name, for: .normal)
-                self.typesStackView.addArrangedSubview(button)
-            }
-            self.typesStackView.addArrangedSubview(UIView())
-            
-            self.configureStatsView(stats: model.staus)
+            self.configureImages(images: model.images)
+            self.configureTypes(types: model.types)
+            self.configureStats(stats: model.stats)
         }.store(in: &cancelBag)
         //
         viewModel.loadPokemonPokedex().sink { result in
@@ -89,10 +74,17 @@ private extension PokemonDetailViewController {
         //
         ownButton.isSelected = viewModel.isOwnedPokemon()
         //
-        viewModel.ownedPokemonChanges().sink { owned in
-            self.ownButton.isSelected = owned
+        viewModel.ownedPokemonChanges().sink { detailModel in
+            self.ownButton.isSelected = detailModel.owned
         }.store(in: &cancelBag)
         
+    }
+}
+
+extension PokemonDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let page = Int(round(scrollView.contentOffset.x/scrollView.frame.width))
+        imagesPageControl.currentPage = page
     }
 }
 
@@ -104,6 +96,7 @@ private extension PokemonDetailViewController {
         scrollView.addSubview(scrollViewContentView)
         scrollViewContentView.addSubview(coverImageViewsScrollView)
         coverImageViewsScrollView.addSubview(coverImageViewsStackView)
+        scrollView.addSubview(imagesPageControl)
         
         scrollViewContentView.addSubview(idLabel)
         scrollViewContentView.addSubview(typesStackView)
@@ -136,6 +129,11 @@ private extension PokemonDetailViewController {
         coverImageViewsStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.height.equalTo(250)
+        }
+        
+        imagesPageControl.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(coverImageViewsScrollView.snp.bottom)
         }
         
         idLabel.snp.makeConstraints { make in
@@ -194,6 +192,7 @@ private extension PokemonDetailViewController {
         scrollView.alwaysBounceHorizontal = true
         scrollView.alwaysBounceVertical = false
         scrollView.isPagingEnabled = true
+        scrollView.delegate = self
         return scrollView
     }
     
@@ -260,29 +259,6 @@ private extension PokemonDetailViewController {
         return stackView
     }
     
-    func configureStatsView(stats: [PokemonDetailModel.Stats]) {
-        self.statsStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
-        //
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.addArrangedSubview(self.makeStatLabel(text: NSLocalizedString("stat", comment: "屬性")))
-        stackView.addArrangedSubview(self.makeStatLabel(text: NSLocalizedString("stat_base", comment: "數值")))
-        stackView.addArrangedSubview(self.makeStatLabel(text: NSLocalizedString("stat_effort", comment: "效果")))
-        self.statsStackView.addArrangedSubview(stackView)
-        
-        stats.forEach { stats in
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.distribution = .fillEqually
-            stackView.addArrangedSubview(self.makeStatLabel(text: stats.stat.name))
-            stackView.addArrangedSubview(self.makeStatLabel(text: String(describing: stats.base_stat)))
-            stackView.addArrangedSubview(self.makeStatLabel(text: String(describing: stats.effort)))
-            self.statsStackView.addArrangedSubview(stackView)
-        }
-        
-    }
-    
     func makeStatTitleLabel() -> UILabel {
         let label = UILabel()
         label.textColor = .navy
@@ -339,6 +315,63 @@ private extension PokemonDetailViewController {
         let label = UILabel()
         label.numberOfLines = 0
         return label
+    }
+    
+    func makeImagesPageControl() -> UIPageControl {
+        let pageControl = UIPageControl()
+        pageControl.backgroundStyle = .prominent
+        pageControl.currentPageIndicatorTintColor = .salmon
+        return pageControl
+    }
+}
+
+private extension PokemonDetailViewController {
+    func configureImages(images: [String]) {
+        self.coverImageViewsStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+        //
+        images.forEach { image in
+            if let imageURL = URL(string: image) {
+                let imageView = self.makeCoverImage()
+                imageView.setImage(url: imageURL)
+                self.coverImageViewsStackView.addArrangedSubview(imageView)
+                imageView.snp.makeConstraints { make in
+                    make.width.equalTo(self.view.snp.width)
+                }
+            }
+        }
+        imagesPageControl.numberOfPages = images.count
+        imagesPageControl.currentPage = 0
+    }
+    
+    func configureTypes(types: [PokemonDetailModel.PokemonType]) {
+        types.forEach { type in
+            let button = self.makeTypeButton()
+            button.setTitle(type.name, for: .normal)
+            self.typesStackView.addArrangedSubview(button)
+        }
+        self.typesStackView.addArrangedSubview(UIView())
+    }
+    
+    func configureStats(stats: [PokemonDetailModel.Stat]) {
+        self.statsStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+        //
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.addArrangedSubview(self.makeStatLabel(text: NSLocalizedString("stat", comment: "屬性")))
+        stackView.addArrangedSubview(self.makeStatLabel(text: NSLocalizedString("stat_base", comment: "數值")))
+        stackView.addArrangedSubview(self.makeStatLabel(text: NSLocalizedString("stat_effort", comment: "效果")))
+        self.statsStackView.addArrangedSubview(stackView)
+        
+        stats.forEach { stat in
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.distribution = .fillEqually
+            stackView.addArrangedSubview(self.makeStatLabel(text: stat.name))
+            stackView.addArrangedSubview(self.makeStatLabel(text: String(describing: stat.baseStat)))
+            stackView.addArrangedSubview(self.makeStatLabel(text: String(describing: stat.effort)))
+            self.statsStackView.addArrangedSubview(stackView)
+        }
     }
 }
 

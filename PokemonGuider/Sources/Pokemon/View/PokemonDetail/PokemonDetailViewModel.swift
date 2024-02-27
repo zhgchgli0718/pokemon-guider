@@ -16,7 +16,7 @@ protocol PokemonDetailViewModelSpec {
     
     func isOwnedPokemon() -> Bool
     func ownPokemon(owned: Bool)
-    func ownedPokemonChanges() -> AnyPublisher<Bool, Never>
+    func ownedPokemonChanges() -> AnyPublisher<PokemonDetailModel, Never>
 }
 
 final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
@@ -54,12 +54,12 @@ final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
         return useCase.isOwnedPokemon(id: id)
     }
     
-    func ownedPokemonChanges() -> AnyPublisher<Bool, Never> {
-        return useCase.ownedPokemonChanges().compactMap({ (id, owned) in
-            guard id == self.id else {
+    func ownedPokemonChanges() -> AnyPublisher<PokemonDetailModel, Never> {
+        return useCase.ownedPokemonChanges().compactMap({ detailModel in
+            guard self.id == detailModel.id else {
                 return nil
             }
-            return owned
+            return detailModel
         }).eraseToAnyPublisher()
     }
 }

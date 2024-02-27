@@ -18,6 +18,9 @@ final class PokemonListViewController: UIViewController {
     private var cancelBag = Set<AnyCancellable>()
     private var viewModel: PokemonListViewModelSpec
     
+    /// girdViewStyle, true = grid view, false = list view
+    private var girdViewStyle: Bool = true
+    
     private lazy var collectionView = makeCollectionView()
     
     weak var delegate: PokemonListViewControllerDelegate?
@@ -53,7 +56,7 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat
         let height: CGFloat
-        if viewModel.girdViewStyle {
+        if girdViewStyle {
             width = (collectionView.frame.width - 30) / 2
             height = (collectionView.frame.height / 4) - 20.0
         } else {
@@ -90,7 +93,7 @@ extension PokemonListViewController: PokemonListHeaderViewDelegate {
     }
     
     func pokemonListHeaderView(_ view: PokemonListHeaderView, didTapToggleViewStyle grid: Bool) {
-        viewModel.girdViewStyle = grid
+        girdViewStyle = grid
         collectionView.reloadData()
     }
 }
@@ -101,7 +104,7 @@ extension PokemonListViewController: UIScrollViewDelegate {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         
-        // Load More...
+        // Trigger Load More...
         if maximumOffset - currentOffset <= scrollView.contentSize.height / 2 {
             viewModel.loadPokemonList()
         }
@@ -129,12 +132,8 @@ private extension PokemonListViewController {
             self.collectionView.reloadData()
         }.store(in: &cancelBag)
         
-        viewModel.didLoadPokemonDetail.sink { index in
-            self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
-        }.store(in: &cancelBag)
-        
-        viewModel.ownedPokemonChanges().sink(receiveValue: { (index, owned) in
-            self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+        viewModel.ownedPokemonChanges().sink(receiveValue: { indexPath in
+            self.collectionView.reloadItems(at: [indexPath])
         }).store(in: &cancelBag)
     }
 }

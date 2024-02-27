@@ -14,16 +14,9 @@ struct PokemonCellViewObject {
     var owned: Bool = false
     let coverImage: URL?
     
-    init(item: PokemonListModel.Item) {
-        self.name = item.name
-        self.id = item.id
-        self.types = []
-        self.coverImage = nil
-        self.owned = false
-    }
-    
     init(model: PokemonDetailModel) {
         self.name = model.name
+        self.owned = model.owned
         self.id = model.id
         self.types = model.types.map { $0.name }
         

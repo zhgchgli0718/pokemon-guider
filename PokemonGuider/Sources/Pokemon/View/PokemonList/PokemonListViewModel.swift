@@ -10,24 +10,25 @@ import Combine
 import Moya
 
 protocol PokemonListViewModelSpec {
-    var cellViewObjects: [PokemonCellViewObject] { get }
-   
-    var didLoadPokemonList: PassthroughSubject<PokemonListModel, Error> { get }
-    var didLoadPokemonDetail: PassthroughSubject<Int, Never> { get }
-    
+    // Input
+    /// Filter to display only owned Pokemon.
     var loadOwnedPokemon: Bool { get set }
-    var girdViewStyle: Bool { get set }
-    
+    /// Request to load Pokemon List
     func loadPokemonList()
+    /// Mark Pokemon as owned
     func ownPokemon(id: String, owned: Bool)
-    func ownedPokemonChanges() -> AnyPublisher<(Int, Bool), Never>
+    
+    // Output
+    /// CellViewObjects Data List
+    var cellViewObjects: [PokemonCellViewObject] { get }
+    /// loadPokemonList() Did Loaded Listener
+    var didLoadPokemonList: PassthroughSubject<Void, Error> { get }
+    /// Mark/unmark Pokemon as owned  Listener
+    func ownedPokemonChanges() -> AnyPublisher<IndexPath, Never>
 }
 
 final class PokemonListViewModel: PokemonListViewModelSpec {
     
-    private(set) var didLoadPokemonList: PassthroughSubject<PokemonListModel, Error> = .init()
-    private(set) var didLoadPokemonDetail: PassthroughSubject<Int, Never> = .init()
-    private(set) var cellViewObjects: [PokemonCellViewObject] = []
     var loadOwnedPokemon: Bool = false {
         didSet {
             cellViewObjects = []
@@ -36,8 +37,9 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
             loadPokemonList()
         }
     }
-    var girdViewStyle: Bool = true
     
+    private(set) var didLoadPokemonList: PassthroughSubject<Void, Error> = .init()
+    private(set) var cellViewObjects: [PokemonCellViewObject] = []
     private var cancelBag = Set<AnyCancellable>()
     private var nextPage: String?
     private var firstLoad: Bool = true
@@ -48,53 +50,46 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
     }
     
     func loadPokemonList() {
+        // If firstLoad is false and nextPage equals nil, it means we have reached the end.
         if !firstLoad && nextPage == nil {
             return
         }
+        firstLoad = false
+        //
         
         if loadOwnedPokemon {
-            handleList(publisher: useCase.getAllOwnedPokemons())
+            useCase.getAllOwnedPokemons().sink { _ in
+                //
+            } receiveValue: { detailModels in
+                let viewObjects = detailModels.map { PokemonCellViewObject(model: $0) }
+                self.cellViewObjects = viewObjects
+                self.didLoadPokemonList.send()
+                self.nextPage = nil
+            }.store(in: &cancelBag)
         } else {
-            handleList(publisher:useCase.getPokemonList(nextPage: nextPage))
+            useCase.getPokemonList(nextPage: nextPage).sink { _ in
+                //
+            } receiveValue: { (listModel, detailModels) in
+                let viewObjects = detailModels.map { PokemonCellViewObject(model: $0) }
+                self.cellViewObjects.append(contentsOf: viewObjects)
+                self.didLoadPokemonList.send()
+                self.nextPage = listModel.next
+            }.store(in: &cancelBag)
         }
-    }
-    
-    func loadPokemonDetail(index: Int) -> AnyPublisher<(Int, PokemonCellViewObject), Error> {
-        return useCase.getPokemonDetail(id: cellViewObjects[index].id).map({ (index, PokemonCellViewObject(model: $0)) }).eraseToAnyPublisher()
+
     }
     
     func ownPokemon(id: String, owned: Bool) {
         useCase.ownPokemon(id: id, owned: owned)
     }
     
-    func ownedPokemonChanges() -> AnyPublisher<(Int, Bool), Never> {
-        return useCase.ownedPokemonChanges().compactMap({ (id, owned) in
-            guard let index = self.cellViewObjects.firstIndex(where: { $0.id == id}) else {
+    func ownedPokemonChanges() -> AnyPublisher<IndexPath, Never> {
+        return useCase.ownedPokemonChanges().compactMap { detailModel -> IndexPath? in
+            guard let row = self.cellViewObjects.firstIndex(where: { $0.id == detailModel.id }) else {
                 return nil
             }
-            self.cellViewObjects[index].owned = owned
-            return (index, owned)
-        }).eraseToAnyPublisher()
-    }
-}
-
-private extension PokemonListViewModel {
-    func handleList(publisher: AnyPublisher<PokemonListModel, Error>) {
-        publisher.handleEvents(receiveOutput: { model in
-            self.cellViewObjects.append(contentsOf: model.results.map{ PokemonCellViewObject(item: $0) })
-            self.nextPage = model.next
-            self.didLoadPokemonList.send(model)
-        }).flatMap({ model in
-            return model.results.publisher.flatMap{ self.useCase.getPokemonDetail(id: $0.id) }.eraseToAnyPublisher()
-        }).eraseToAnyPublisher().sink { result in
-            self.firstLoad = false
-        } receiveValue: { model in
-            if let index = self.cellViewObjects.firstIndex(where: { $0.id == model.id}) {
-                var viewObject = PokemonCellViewObject(model: model)
-                viewObject.owned = self.useCase.isOwnedPokemon(id: model.id)
-                self.cellViewObjects[index] = viewObject
-                self.didLoadPokemonDetail.send(index)
-            }
-        }.store(in: &cancelBag)
+            self.cellViewObjects[row] = PokemonCellViewObject(model: detailModel)
+            return IndexPath(row: row, section: 0)
+        }.eraseToAnyPublisher()
     }
 }

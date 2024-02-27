@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol PokemonUseCaseSpec {
-    func getPokemonList(nextPage: String?) -> AnyPublisher<PokemonListModel, Error>
+    func getPokemonList(nextPage: String?) -> AnyPublisher<(PokemonListModel, [PokemonDetailModel]), Error>
     func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error>
     func getPokemonDetail(name: String) -> AnyPublisher<PokemonDetailModel, Error>
     func getPokemonPokedex(id: String) -> AnyPublisher<PokemonPokedexModel, Error>
@@ -17,8 +17,8 @@ protocol PokemonUseCaseSpec {
     
     func isOwnedPokemon(id: String) -> Bool
     func ownPokemon(id: String, owned: Bool)
-    func ownedPokemonChanges() -> AnyPublisher<(String, Bool), Never>
-    func getAllOwnedPokemons() -> AnyPublisher<PokemonListModel, Error>
+    func ownedPokemonChanges() -> AnyPublisher<PokemonDetailModel, Never>
+    func getAllOwnedPokemons() -> AnyPublisher<[PokemonDetailModel], Error>
 }
 
 final class PokemonUseCase: PokemonUseCaseSpec {
@@ -32,16 +32,32 @@ final class PokemonUseCase: PokemonUseCaseSpec {
         self.coreDataRepository = coreDataRepository
     }
     
-    func getPokemonList(nextPage: String?) -> AnyPublisher<PokemonListModel, Error> {
-        return repository.getPokemonList(nextPage: nextPage).eraseToAnyPublisher()
+    func getPokemonList(nextPage: String?) -> AnyPublisher<(PokemonListModel, [PokemonDetailModel]), Error> {
+        return repository.getPokemonList(nextPage: nextPage).flatMap { model in
+            let publisher = model.results.map { item in
+                if let local = self.coreDataRepository.getPokemonDetail(id: item.id) {
+                    return Just(local).setFailureType(to: Error.self).eraseToAnyPublisher()
+                } else {
+                    return self.getPokemonDetail(id: item.id)
+                }
+            }
+            return Publishers.Zip(
+                    Just(model).setFailureType(to: Error.self).eraseToAnyPublisher(),
+                    Publishers.MergeMany(publisher).collect().eraseToAnyPublisher()
+            ).eraseToAnyPublisher()
+        }.eraseToAnyPublisher().eraseToAnyPublisher()
     }
     
     func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error> {
-        return repository.getPokemonDetail(id: id)
+        return repository.getPokemonDetail(id: id) .handleEvents(receiveOutput: { detailModel in
+            self.coreDataRepository.savePokemon(detailModel)
+        }).eraseToAnyPublisher()
     }
     
     func getPokemonDetail(name: String) -> AnyPublisher<PokemonDetailModel, Error> {
-        return repository.getPokemonDetail(name: name)
+        return repository.getPokemonDetail(name: name).handleEvents(receiveOutput: { detailModel in
+            self.coreDataRepository.savePokemon(detailModel)
+        }).eraseToAnyPublisher()
     }
     
     func getPokemonPokedex(id: String) -> AnyPublisher<PokemonPokedexModel, Error> {
@@ -57,14 +73,14 @@ final class PokemonUseCase: PokemonUseCaseSpec {
     }
     
     func ownPokemon(id: String, owned: Bool) {
-        coreDataRepository.savePokemon(id: id, name: nil, owned: owned)
+        coreDataRepository.ownPokemon(id: id, owned: owned)
     }
     
-    func ownedPokemonChanges() -> AnyPublisher<(String, Bool), Never> {
+    func ownedPokemonChanges() -> AnyPublisher<PokemonDetailModel, Never> {
         return coreDataRepository.ownedPokemonChanges()
     }
     
-    func getAllOwnedPokemons() -> AnyPublisher<PokemonListModel, Error> {
+    func getAllOwnedPokemons() -> AnyPublisher<[PokemonDetailModel], Error> {
         return Future { result in
             result(.success(self.coreDataRepository.getAllOwnedPokemons()))
         }.eraseToAnyPublisher()

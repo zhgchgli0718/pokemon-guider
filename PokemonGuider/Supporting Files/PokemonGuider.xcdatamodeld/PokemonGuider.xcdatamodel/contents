@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23D60" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="PokemonDetailCoreDataEntity" representedClassName="PokemonDetailCoreDataEntity" syncable="YES" codeGenerationType="class">
+    <entity name="PokemonDetailManagedObject" representedClassName="PokemonDetailManagedObject" syncable="YES" codeGenerationType="class">
+        <attribute name="coverImage" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="images" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="owned" optional="YES" attributeType="Boolean" valueTransformerName="" usesScalarValueType="YES"/>
+        <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonDetailStatManagedObject" inverseName="detail" inverseEntity="PokemonDetailStatManagedObject"/>
+        <relationship name="types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonDetailTypeManagedObject" inverseName="detail" inverseEntity="PokemonDetailTypeManagedObject"/>
+    </entity>
+    <entity name="PokemonDetailStatManagedObject" representedClassName="PokemonDetailStatManagedObject" syncable="YES" codeGenerationType="class">
+        <attribute name="baseStat" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="effort" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="detail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PokemonDetailManagedObject" inverseName="stats" inverseEntity="PokemonDetailManagedObject"/>
+    </entity>
+    <entity name="PokemonDetailTypeManagedObject" representedClassName="PokemonDetailTypeManagedObject" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="detail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PokemonDetailManagedObject" inverseName="types" inverseEntity="PokemonDetailManagedObject"/>
     </entity>
 </model>

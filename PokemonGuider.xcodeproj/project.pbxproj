@@ -20,6 +20,7 @@
 		1E32F7F32B8B4C6E00EBA22C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E32F7F22B8B4C6E00EBA22C /* CoreDataManager.swift */; };
 		1E32F7FB2B8B555000EBA22C /* CoreDataRespository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E32F7FA2B8B555000EBA22C /* CoreDataRespository.swift */; };
 		1E32F7FD2B8B801B00EBA22C /* PokemonListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E32F7FC2B8B801B00EBA22C /* PokemonListHeaderView.swift */; };
+		1E37DD202B8E1CE100045F6A /* SaveToCoreDataVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E37DD1F2B8E1CE100045F6A /* SaveToCoreDataVisitor.swift */; };
 		1E6EAC102B899973004CC1D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC0F2B899973004CC1D2 /* AppDelegate.swift */; };
 		1E6EAC122B899973004CC1D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC112B899973004CC1D2 /* SceneDelegate.swift */; };
 		1E6EAC1A2B899973004CC1D2 /* PokemonGuider.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC182B899973004CC1D2 /* PokemonGuider.xcdatamodeld */; };
@@ -52,6 +53,8 @@
 		1E6EAC8C2B89FCD4004CC1D2 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 1E6EAC8B2B89FCD4004CC1D2 /* NukeExtensions */; };
 		1E6EAC8E2B8A1489004CC1D2 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EAC8D2B8A1489004CC1D2 /* NSObject+Extension.swift */; };
 		1E8B61482B8A29060095BA7B /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B61472B8A29060095BA7B /* UIImageView+Extension.swift */; };
+		68930FBF2B8D89980097A94C /* Saveable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68930FBE2B8D89980097A94C /* Saveable.swift */; };
+		68930FC12B8D89B00097A94C /* SaveableVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68930FC02B8D89B00097A94C /* SaveableVisitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,7 @@
 		1E32F7F22B8B4C6E00EBA22C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1E32F7FA2B8B555000EBA22C /* CoreDataRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRespository.swift; sourceTree = "<group>"; };
 		1E32F7FC2B8B801B00EBA22C /* PokemonListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListHeaderView.swift; sourceTree = "<group>"; };
+		1E37DD1F2B8E1CE100045F6A /* SaveToCoreDataVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToCoreDataVisitor.swift; sourceTree = "<group>"; };
 		1E6EAC0C2B899973004CC1D2 /* PokemonGuider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonGuider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6EAC0F2B899973004CC1D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E6EAC112B899973004CC1D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		1E6EAC862B89FC63004CC1D2 /* PokemonCellViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCellViewObject.swift; sourceTree = "<group>"; };
 		1E6EAC8D2B8A1489004CC1D2 /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		1E8B61472B8A29060095BA7B /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		68930FBE2B8D89980097A94C /* Saveable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saveable.swift; sourceTree = "<group>"; };
+		68930FC02B8D89B00097A94C /* SaveableVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveableVisitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				1E32F7F22B8B4C6E00EBA22C /* CoreDataManager.swift */,
+				1E37DD1F2B8E1CE100045F6A /* SaveToCoreDataVisitor.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -274,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				1E32F7F12B8B4C5E00EBA22C /* CoreData */,
+				68930FBD2B8D898B0097A94C /* Saveable */,
 				1E6EAC562B89C454004CC1D2 /* Coordinator.swift */,
 				1E6EAC772B89E60E004CC1D2 /* APIServer.swift */,
 				1E6EAC8D2B8A1489004CC1D2 /* NSObject+Extension.swift */,
@@ -381,6 +389,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		68930FBD2B8D898B0097A94C /* Saveable */ = {
+			isa = PBXGroup;
+			children = (
+				68930FBE2B8D89980097A94C /* Saveable.swift */,
+				68930FC02B8D89B00097A94C /* SaveableVisitor.swift */,
+			);
+			path = Saveable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,6 +567,7 @@
 				1E6EAC872B89FC63004CC1D2 /* PokemonCellViewObject.swift in Sources */,
 				1E32F7DE2B8AFFC600EBA22C /* PokemonDetailViewController.swift in Sources */,
 				1E6EAC122B899973004CC1D2 /* SceneDelegate.swift in Sources */,
+				1E37DD202B8E1CE100045F6A /* SaveToCoreDataVisitor.swift in Sources */,
 				1E6EAC782B89E60E004CC1D2 /* APIServer.swift in Sources */,
 				1E32F7E02B8AFFF200EBA22C /* PokemonDetailViewModel.swift in Sources */,
 				1E6EAC4D2B89C2BB004CC1D2 /* MyProfileViewController.swift in Sources */,
@@ -560,11 +578,13 @@
 				1E6EAC712B89E55F004CC1D2 /* PokemonUseCase.swift in Sources */,
 				1E6EAC7F2B89F250004CC1D2 /* PokemonListEntity.swift in Sources */,
 				1E6EAC1A2B899973004CC1D2 /* PokemonGuider.xcdatamodeld in Sources */,
+				68930FBF2B8D89980097A94C /* Saveable.swift in Sources */,
 				1E32F7F32B8B4C6E00EBA22C /* CoreDataManager.swift in Sources */,
 				1E6EAC5B2B89C569004CC1D2 /* HomeCoordinator.swift in Sources */,
 				1E32F7FB2B8B555000EBA22C /* CoreDataRespository.swift in Sources */,
 				1E6EAC5F2B89C606004CC1D2 /* MyProfileCoordinator.swift in Sources */,
 				1E8B61482B8A29060095BA7B /* UIImageView+Extension.swift in Sources */,
+				68930FC12B8D89B00097A94C /* SaveableVisitor.swift in Sources */,
 				1E32F7E82B8B2CA500EBA22C /* PokemonPokedexEntity.swift in Sources */,
 				1E32F7FD2B8B801B00EBA22C /* PokemonListHeaderView.swift in Sources */,
 				1E32F7EE2B8B2F3300EBA22C /* PokemonEvolutionChainModel.swift in Sources */,
@@ -785,9 +805,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4U9BQ9X87W;
+				DEVELOPMENT_TEAM = UGFKKJS5G7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PokemonGuider/Supporting Files/info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Pokemon Guider";
@@ -802,6 +823,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = li.zhgchg.PokemonGuider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -813,9 +835,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4U9BQ9X87W;
+				DEVELOPMENT_TEAM = UGFKKJS5G7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PokemonGuider/Supporting Files/info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Pokemon Guider";
@@ -830,6 +853,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = li.zhgchg.PokemonGuider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
