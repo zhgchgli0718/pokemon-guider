@@ -33,6 +33,7 @@ final class PokemonUseCase: PokemonUseCaseSpec {
     }
     
     func getPokemonList(nextPage: String?) -> AnyPublisher<(PokemonListModel, [PokemonDetailModel]), Error> {
+        // 優先從 Local 拿資料，入無再打 API
         return repository.getPokemonList(nextPage: nextPage).flatMap { model in
             let publisher = model.results.map { item in
                 if let local = self.coreDataRepository.getPokemonDetail(id: item.id) {

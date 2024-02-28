@@ -8,11 +8,17 @@
 import Foundation
 import Combine
 
+
+protocol PokemonDetailViewModelDelegate: AnyObject {
+    func pokemonDetailViewModel(_ viewModel: PokemonDetailViewModel, pokemonDidTap id: String)
+}
+
 protocol PokemonDetailViewModelSpec {
     var id: String { get }
     func loadPokemonDetail() -> AnyPublisher<PokemonDetailModel, Error>
     func loadPokemonPokedex() -> AnyPublisher<PokemonPokedexModel, Error>
     func loadPokemonEvolutionChain() -> AnyPublisher<[PokemonDetailModel], Error>
+    func tapPokemon(id: String)
     
     func isOwnedPokemon() -> Bool
     func ownPokemon(owned: Bool)
@@ -22,6 +28,8 @@ protocol PokemonDetailViewModelSpec {
 final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
     
     private var cancelBag = Set<AnyCancellable>()
+    
+    weak var delegate: PokemonDetailViewModelDelegate?
     
     let id: String
     let useCase: PokemonUseCaseSpec
@@ -61,5 +69,11 @@ final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
             }
             return detailModel
         }).eraseToAnyPublisher()
+    }
+}
+
+extension PokemonDetailViewModel {
+    func tapPokemon(id: String) {
+        delegate?.pokemonDetailViewModel(self, pokemonDidTap: id)
     }
 }

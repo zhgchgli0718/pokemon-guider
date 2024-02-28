@@ -18,8 +18,9 @@ final class PokemonCoordinator: BaseCoordinator {
     }
   
     override func start() {
-        let pokemonListViewController = PokemonListViewController()
-        pokemonListViewController.delegate = self
+        let viewModel = PokemonListViewModel()
+        viewModel.delegate = self
+        let pokemonListViewController = PokemonListViewController(viewModel: viewModel)
         navigationController.setViewControllers([pokemonListViewController], animated: false)
     }
 }
@@ -27,21 +28,21 @@ final class PokemonCoordinator: BaseCoordinator {
 private extension PokemonCoordinator {
     func goToPokemonDetail(id: String) {
         let viewModel = PokemonDetailViewModel(id: id)
+        viewModel.delegate = self
         let pokemonDetailViewController = PokemonDetailViewController(viewModel: viewModel)
         pokemonDetailViewController.hidesBottomBarWhenPushed = true
-        pokemonDetailViewController.delegate = self
         navigationController.pushViewController(pokemonDetailViewController, animated: true)
     }
 }
 
-extension PokemonCoordinator: PokemonListViewControllerDelegate {
-    func pokemonListViewController(_ viewController: PokemonListViewController, pokemonDidTap id: String) {
+extension PokemonCoordinator: PokemonListViewModelDekegate {
+    func pokemonListViewModel(_ viewModel: PokemonListViewModel, pokemonDidTap id: String) {
         goToPokemonDetail(id: id)
     }
 }
 
-extension PokemonCoordinator: PokemonDetailViewControllerDelegate {
-    func pokemonDetailViewController(_ viewController: PokemonDetailViewController, pokemonDidTap id: String) {
+extension PokemonCoordinator: PokemonDetailViewModelDelegate {
+    func pokemonDetailViewModel(_ viewModel: PokemonDetailViewModel, pokemonDidTap id: String) {
         goToPokemonDetail(id: id)
     }
 }

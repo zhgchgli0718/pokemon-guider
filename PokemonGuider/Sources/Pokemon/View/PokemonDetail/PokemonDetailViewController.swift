@@ -9,10 +9,6 @@ import Foundation
 import UIKit
 import Combine
 
-protocol PokemonDetailViewControllerDelegate: AnyObject {
-    func pokemonDetailViewController(_ viewController: PokemonDetailViewController, pokemonDidTap id: String)
-}
-
 final class PokemonDetailViewController: UIViewController {
     
     private lazy var scrollView = makeScrollView()
@@ -31,8 +27,6 @@ final class PokemonDetailViewController: UIViewController {
     
     private var cancelBag = Set<AnyCancellable>()
     private let viewModel: PokemonDetailViewModelSpec
-    
-    weak var delegate: PokemonDetailViewControllerDelegate?
     
     init(viewModel: PokemonDetailViewModelSpec) {
         self.viewModel = viewModel
@@ -378,7 +372,7 @@ private extension PokemonDetailViewController {
 private extension PokemonDetailViewController {
     @objc func evolutionChainButtonDidTap(_ button: ClickableButton) {
         guard let id = button.id else { return }
-        delegate?.pokemonDetailViewController(self, pokemonDidTap: id)
+        viewModel.tapPokemon(id: id)
     }
     
     @objc func ownButtonDidTap(_ button: UIButton) {

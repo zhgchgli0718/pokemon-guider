@@ -36,7 +36,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        // Clean StackView
+        //
     }
     
     func configure(viewObject: PokemonCellViewObject) {

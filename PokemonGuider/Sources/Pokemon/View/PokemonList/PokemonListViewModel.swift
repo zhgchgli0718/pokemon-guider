@@ -9,6 +9,10 @@ import Foundation
 import Combine
 import Moya
 
+protocol PokemonListViewModelDekegate: AnyObject {
+    func pokemonListViewModel(_ viewModel: PokemonListViewModel, pokemonDidTap id: String)
+}
+
 protocol PokemonListViewModelSpec {
     // Input
     /// Filter to display only owned Pokemon.
@@ -17,6 +21,8 @@ protocol PokemonListViewModelSpec {
     func loadPokemonList()
     /// Mark Pokemon as owned
     func ownPokemon(id: String, owned: Bool)
+    /// Pokemon did tapped
+    func tapPokemon(id: String)
     
     // Output
     /// CellViewObjects Data List
@@ -28,6 +34,8 @@ protocol PokemonListViewModelSpec {
 }
 
 final class PokemonListViewModel: PokemonListViewModelSpec {
+    
+    weak var delegate: PokemonListViewModelDekegate?
     
     var loadOwnedPokemon: Bool = false {
         didSet {
@@ -91,5 +99,11 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
             self.cellViewObjects[row] = PokemonCellViewObject(model: detailModel)
             return IndexPath(row: row, section: 0)
         }.eraseToAnyPublisher()
+    }
+}
+
+extension PokemonListViewModel {
+    func tapPokemon(id: String) {
+        delegate?.pokemonListViewModel(self, pokemonDidTap: id)
     }
 }

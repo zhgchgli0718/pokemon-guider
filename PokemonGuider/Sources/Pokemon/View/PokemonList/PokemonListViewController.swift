@@ -9,10 +9,6 @@ import Foundation
 import UIKit
 import Combine
 
-protocol PokemonListViewControllerDelegate: AnyObject {
-    func pokemonListViewController(_ viewController: PokemonListViewController, pokemonDidTap id: String)
-}
-
 final class PokemonListViewController: UIViewController {
     
     private var cancelBag = Set<AnyCancellable>()
@@ -22,8 +18,6 @@ final class PokemonListViewController: UIViewController {
     private var girdViewStyle: Bool = true
     
     private lazy var collectionView = makeCollectionView()
-    
-    weak var delegate: PokemonListViewControllerDelegate?
     
     init(viewModel: PokemonListViewModelSpec = PokemonListViewModel()) {
         self.viewModel = viewModel
@@ -48,8 +42,9 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.className, for: indexPath)
         guard let cell = cell as? PokemonCollectionViewCell else { return cell }
+        let viewObject = viewModel.cellViewObjects[indexPath.row]
         cell.delegate = self
-        cell.configure(viewObject: viewModel.cellViewObjects[indexPath.row])
+        cell.configure(viewObject: viewObject)
         return cell
     }
     
@@ -113,7 +108,7 @@ extension PokemonListViewController: UIScrollViewDelegate {
 
 extension PokemonListViewController: PokemonCollectionViewCellDelegate {
     func pokemonCollectionViewCell(_ view: PokemonCollectionViewCell, viewDidTap id: String) {
-        delegate?.pokemonListViewController(self, pokemonDidTap: id)
+        viewModel.tapPokemon(id: id)
     }
     
     func pokemonCollectionViewCell(_ view: PokemonCollectionViewCell, starDidTap id: String, owned: Bool) {
