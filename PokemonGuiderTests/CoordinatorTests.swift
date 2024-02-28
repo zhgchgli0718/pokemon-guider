@@ -11,6 +11,32 @@ import Combine
 
 final class CoordinatorTests: XCTestCase {
     
+    func testCoordinatorAdd() {
+        let aCoordinator = FakeCoordinatorA()
+        let bCoordinator = FakeCoordinatorB()
+        
+        aCoordinator.add(child: bCoordinator)
+        XCTAssertEqual(aCoordinator.childCoordinators.count, 1)
+        XCTAssertTrue(aCoordinator.childCoordinators.first === bCoordinator)
+        
+        // add sam coordinator again, should remain
+        aCoordinator.add(child: bCoordinator)
+        XCTAssertEqual(aCoordinator.childCoordinators.count, 1)
+        XCTAssertTrue(aCoordinator.childCoordinators.first === bCoordinator)
+    }
+    
+    func testCoordinatorRemove() {
+        let aCoordinator = FakeCoordinatorA()
+        let bCoordinator = FakeCoordinatorB()
+        
+        aCoordinator.add(child: bCoordinator)
+        XCTAssertEqual(aCoordinator.childCoordinators.count, 1)
+        XCTAssertTrue(aCoordinator.childCoordinators.first === bCoordinator)
+        
+        aCoordinator.remove(child: bCoordinator)
+        XCTAssertEqual(aCoordinator.childCoordinators.count, 0)
+    }
+    
     func testPokemonCoordinator() {
         let navigationController = SpyUINavigationController()
         let pokemonCoordinator = PokemonCoordinator(navigationController: navigationController)
@@ -33,6 +59,13 @@ final class CoordinatorTests: XCTestCase {
 }
 
 private extension CoordinatorTests {
+    class FakeCoordinatorA: Coordinator {
+        var childCoordinators: [PokemonGuider.Coordinator] = []
+    }
+    class FakeCoordinatorB: Coordinator {
+        var childCoordinators: [PokemonGuider.Coordinator] = []
+    }
+    
     class SpyUINavigationController: UINavigationController {
         
         var pushViewController: UIViewController?
