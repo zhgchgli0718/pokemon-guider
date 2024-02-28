@@ -38,6 +38,13 @@
         "identifier" : "1E6EAC242B899975004CC1D2",
         "name" : "PokemonGuiderTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:PokemonGuider.xcodeproj",
+        "identifier" : "1E37DD532B8F1A1400045F6A",
+        "name" : "PokemonGuiderUITests"
+      }
     }
   ],
   "version" : 1
