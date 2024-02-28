@@ -10,23 +10,24 @@ import XCTest
 import Combine
 
 final class CoordinatorTests: XCTestCase {
+    
     func testPokemonCoordinator() {
         let navigationController = SpyUINavigationController()
-        let appCoordinator = PokemonCoordinator(navigationController: navigationController)
+        let pokemonCoordinator = PokemonCoordinator(navigationController: navigationController)
         
         // Test Default List
-        appCoordinator.start()
+        pokemonCoordinator.start()
         XCTAssertTrue(navigationController.topViewController! is PokemonListViewController)
         //
         
         // Test List GoTo Detail
         navigationController.pushViewController = nil
-        appCoordinator.pokemonListViewModel(FakePokemonListViewModel(), pokemonDidTap: "1")
+        pokemonCoordinator.pokemonListViewModel(FakePokemonListViewModel(), pokemonDidTap: "1")
         XCTAssertTrue(navigationController.pushViewController! is PokemonDetailViewController)
         
         // Test Detail GoTo Detail
         navigationController.pushViewController = nil
-        appCoordinator.pokemonDetailViewModel(FakePokemonDetailViewModel(), pokemonDidTap: "1")
+        pokemonCoordinator.pokemonDetailViewModel(FakePokemonDetailViewModel(), pokemonDidTap: "1")
         XCTAssertTrue(navigationController.pushViewController! is PokemonDetailViewController)
     }
 }
