@@ -8,18 +8,17 @@
 import Foundation
 import UIKit
 
-final class HomeCoordinator: BaseCoordinator {
+final class HomeCoordinator: Coordinator {
         
     private let homeTabBarController: HomeTabBarController
-  
+    var childCoordinators: [Coordinator] = []
+    
     init(homeTabBarController: HomeTabBarController) {
         self.homeTabBarController = homeTabBarController
-        super.init()
-        
         homeTabBarController.homeTabBarConrollerDelegate = self
     }
   
-    override func start() {
+    func start() {
         runDefaultFlow([.pokemonList, .myProfile])
     }
 }

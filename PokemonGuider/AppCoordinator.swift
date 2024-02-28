@@ -8,16 +8,17 @@
 import Foundation
 import UIKit
 
-final class AppCoordinator: BaseCoordinator {
+final class AppCoordinator: Coordinator {
     
     private(set) var window: UIWindow?
+    var childCoordinators: [Coordinator] = []
     
     init(scene: UIScene) {
         self.window = Self.configureWindowFor(scene)
         window?.makeKeyAndVisible()
     }
     
-    override func start() {
+    func start() {
         runDefaultFlow()
     }
 }

@@ -8,16 +8,20 @@
 import Foundation
 import UIKit
 
-final class PokemonCoordinator: BaseCoordinator {
+protocol PokemonCoordinatorSpec: Coordinator {
+    func goToPokemonDetail(id: String)
+}
+
+final class PokemonCoordinator: PokemonCoordinatorSpec {
         
     private let navigationController: UINavigationController
-  
+    var childCoordinators: [Coordinator] = []
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        super.init()
     }
   
-    override func start() {
+    func start() {
         let viewModel = PokemonListViewModel()
         viewModel.delegate = self
         let pokemonListViewController = PokemonListViewController(viewModel: viewModel)
@@ -25,7 +29,7 @@ final class PokemonCoordinator: BaseCoordinator {
     }
 }
 
-private extension PokemonCoordinator {
+extension PokemonCoordinator {
     func goToPokemonDetail(id: String) {
         let viewModel = PokemonDetailViewModel(id: id)
         viewModel.delegate = self
@@ -36,13 +40,13 @@ private extension PokemonCoordinator {
 }
 
 extension PokemonCoordinator: PokemonListViewModelDekegate {
-    func pokemonListViewModel(_ viewModel: PokemonListViewModel, pokemonDidTap id: String) {
+    func pokemonListViewModel(_ viewModel: PokemonListViewModelSpec, pokemonDidTap id: String) {
         goToPokemonDetail(id: id)
     }
 }
 
 extension PokemonCoordinator: PokemonDetailViewModelDelegate {
-    func pokemonDetailViewModel(_ viewModel: PokemonDetailViewModel, pokemonDidTap id: String) {
+    func pokemonDetailViewModel(_ viewModel: PokemonDetailViewModelSpec, pokemonDidTap id: String) {
         goToPokemonDetail(id: id)
     }
 }

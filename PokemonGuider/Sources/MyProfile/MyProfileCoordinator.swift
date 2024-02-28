@@ -8,16 +8,16 @@
 import Foundation
 import UIKit
 
-final class MyProfileCoordinator: BaseCoordinator {
+final class MyProfileCoordinator: Coordinator {
         
     private let navigationController: UINavigationController
-  
+    var childCoordinators: [Coordinator] = []
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        super.init()
     }
   
-    override func start() {
+    func start() {
         let myProfileViewController = MyProfileViewController()
         navigationController.setViewControllers([myProfileViewController], animated: false)
     }
