@@ -1,6 +1,8 @@
 # Pokemon Guider!
 [![Pokemon Guider](https://img.youtube.com/vi/rgY6l_fPERI/0.jpg)](https://www.youtube.com/watch?v=rgY6l_fPERI)
 
+[![codecov](https://codecov.io/github/zhgchgli0718/pokemon-guider/graph/badge.svg?token=6ZNKICR3ND)](https://codecov.io/github/zhgchgli0718/pokemon-guider)
+
 # Features
 ## 列表頁面
 - [x] Pokemon 基本訊息
@@ -44,7 +46,11 @@
 - [x] UIKit (Code Layout)
 - [x] Combine
 - [x] CoreData
-- [x] Swift Package Manager 
+- [x] Swift Package Manager
+## Testing
+- [x] UnitTests
+- [x] UI Tests
+- [x] Snapshot Tests  
 ## Dependencies
 - [x] Moya/CombineMoya (網路請求封裝)
 - [x] SnapKit (Code Layout 工具)
@@ -52,8 +58,6 @@
 ---
 # App 架構
 <img width="1232" alt="App Arch" src="https://github.com/zhgchgli0718/pokemon-guider/assets/33706588/59dedb87-71df-4c3b-b6be-045c6dac9bf7">
-
-
 
 ## Coordinator+Clean Architecture
 ### Coordinator
@@ -81,4 +85,11 @@
 - 由 Entity or NSManagedObject 產生
 - 用於在 App 架構中傳遞做為資料參考使用
 - Business login 套用
-
+---
+# ToDo 待優化項目
+(因時程問題暫未實現)
+- [ ] Implement additional functionality to select two types simultaneously and display attack multipliers (4x, 2x, 1/2x, 1/4x, 0x).
+- [ ] Allowing users to view all Pokemon of a selected type in type matchup chart and access their details.
+- [ ] 使用 Factory Pattern、Builder Pattern or DIC 封裝 ViewController 的依賴
+- [ ] 完善 PokemonDetail 本地 CoreDat 儲存，加速內容頁載入
+- [ ] 完善 SaveToCoreData(SaveableVisitor) 儲存更多 Model(Visit Element)、加上其他儲存策略(Visitor)
