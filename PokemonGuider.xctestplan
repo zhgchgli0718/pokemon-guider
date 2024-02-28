@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "316455CC-BA32-4413-96DF-32CC46C9B038",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:PokemonGuider.xcodeproj",
+      "identifier" : "1E6EAC0B2B899973004CC1D2",
+      "name" : "PokemonGuider"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:PokemonGuider.xcodeproj",
+        "identifier" : "1E32F7C52B8A344500EBA22C",
+        "name" : "PokemonGuiderSnapshotTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:PokemonGuider.xcodeproj",
+        "identifier" : "1E6EAC242B899975004CC1D2",
+        "name" : "PokemonGuiderTests"
+      }
+    }
+  ],
+  "version" : 1
+}
