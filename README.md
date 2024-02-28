@@ -51,7 +51,8 @@
 - [x] SnapshotTesting (SnapshotTesting 工具)
 ---
 # App 架構
-<img width="1472" alt="Untitled from" src="https://github.com/zhgchgli0718/pokemon-guider/assets/33706588/923d61d4-3fb7-48a6-bff2-9fd1161b7a58">
+<img width="1232" alt="App Arch" src="https://github.com/zhgchgli0718/pokemon-guider/assets/33706588/59dedb87-71df-4c3b-b6be-045c6dac9bf7">
+
 
 
 ## Coordinator+Clean Architecture
