@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "configure(indexPath:viewObject:)"
+            landmarkName = "configure(viewObject:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -46,8 +46,8 @@
             filePath = "PokemonGuiderTests/CoordinatorTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "testPokemonCoordinator()"
             landmarkType = "7">
          </BreakpointContent>
@@ -351,6 +351,70 @@
                   startingLineNumber = "60"
                   endingLineNumber = "60"
                   offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2014B319-6B14-4BB3-B66B-78A18E19B3AC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Home/HomeCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "tabBarDidSelect(_:didSelect:index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6CBBEE91-C498-42BA-B25F-2193F37587F0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuiderUITests/PokemonGuiderUITests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "testTapPokemonToDetail()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6CBBEE91-C498-42BA-B25F-2193F37587F0 - 9b57fe65d859154a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuiderUITests.PokemonGuiderUITests.testTapPokemonToDetail() throws -&gt; ()"
+                  moduleName = "PokemonGuiderUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderUITests/PokemonGuiderUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "6CBBEE91-C498-42BA-B25F-2193F37587F0 - 9b57fe65d859156d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuiderUITests.PokemonGuiderUITests.testTapPokemonToDetail() throws -&gt; ()"
+                  moduleName = "PokemonGuiderUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderUITests/PokemonGuiderUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "92">
                </Location>
             </Locations>
          </BreakpointContent>

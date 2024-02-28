@@ -136,6 +136,7 @@ private extension PokemonCollectionViewCell {
     
     func makeNameLabel() -> UILabel {
         let label = UILabel()
+        label.accessibilityIdentifier = "pokemonName"
         label.font = .systemFont(ofSize: 14, weight: .heavy)
         label.textColor = .navy
         return label

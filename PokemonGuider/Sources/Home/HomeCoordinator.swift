@@ -49,12 +49,14 @@ private extension HomeCoordinator {
                 navigationController.title = NSLocalizedString("pokemon_list", comment: "所有寶可夢")
                 navigationController.tabBarItem.image = UIImage(systemName: "lizard.circle")
                 navigationController.navigationBar.prefersLargeTitles = true
+                navigationController.tabBarItem.accessibilityIdentifier = "pokemonList"
                 return (navigationController, coordinator)
             case .myProfile:
                 let navigationController = UINavigationController()
                 let coordinator = MyProfileCoordinator(navigationController: navigationController)
                 navigationController.title = NSLocalizedString("my_profile", comment: "我的帳戶")
                 navigationController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+                navigationController.tabBarItem.accessibilityIdentifier = "myProfile"
                 return (navigationController, coordinator)
             }
         }
