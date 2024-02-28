@@ -14,9 +14,6 @@ final class PokemonListViewController: UIViewController {
     private var cancelBag = Set<AnyCancellable>()
     private var viewModel: PokemonListViewModelSpec
     
-    /// girdViewStyle, true = grid view, false = list view
-    private var girdViewStyle: Bool = true
-    
     private lazy var collectionView = makeCollectionView()
     
     init(viewModel: PokemonListViewModelSpec = PokemonListViewModel()) {
@@ -51,7 +48,7 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat
         let height: CGFloat
-        if girdViewStyle {
+        if viewModel.girdViewStyle {
             width = (collectionView.frame.width - 30) / 2
             height = (collectionView.frame.height / 4) - 20.0
         } else {
@@ -71,6 +68,7 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
         } else {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PokemonListHeaderView.className, for: indexPath)
             if let header = header as? PokemonListHeaderView {
+                header.configure(owned: viewModel.onlyDisplayOwnedPokemon, gridViewStyle: viewModel.girdViewStyle)
                 header.delegate = self
             }
             return header
@@ -84,11 +82,11 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
 
 extension PokemonListViewController: PokemonListHeaderViewDelegate {
     func pokemonListHeaderView(_ view: PokemonListHeaderView, didTapOwned owned: Bool) {
-        viewModel.loadOwnedPokemon = owned
+        viewModel.onlyDisplayOwnedPokemon = owned
     }
     
     func pokemonListHeaderView(_ view: PokemonListHeaderView, didTapToggleViewStyle grid: Bool) {
-        girdViewStyle = grid
+        viewModel.girdViewStyle = grid
         collectionView.reloadData()
     }
 }

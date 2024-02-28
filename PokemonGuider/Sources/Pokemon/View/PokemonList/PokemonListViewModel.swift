@@ -10,13 +10,15 @@ import Combine
 import Moya
 
 protocol PokemonListViewModelDekegate: AnyObject {
-    func pokemonListViewModel(_ viewModel: PokemonListViewModel, pokemonDidTap id: String)
+    func pokemonListViewModel(_ viewModel: PokemonListViewModelSpec, pokemonDidTap id: String)
 }
 
 protocol PokemonListViewModelSpec {
     // Input
     /// Filter to display only owned Pokemon.
-    var loadOwnedPokemon: Bool { get set }
+    var onlyDisplayOwnedPokemon: Bool { get set }
+    /// girdViewStyle, true = grid view, false = list view
+    var girdViewStyle: Bool { get set }
     /// Request to load Pokemon List
     func loadPokemonList()
     /// Mark Pokemon as owned
@@ -37,7 +39,7 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
     
     weak var delegate: PokemonListViewModelDekegate?
     
-    var loadOwnedPokemon: Bool = false {
+    var onlyDisplayOwnedPokemon: Bool = false {
         didSet {
             cellViewObjects = []
             nextPage = nil
@@ -45,6 +47,8 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
             loadPokemonList()
         }
     }
+    
+    var girdViewStyle: Bool = true
     
     private(set) var didLoadPokemonList: PassthroughSubject<Void, Error> = .init()
     private(set) var cellViewObjects: [PokemonCellViewObject] = []
@@ -65,7 +69,7 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
         firstLoad = false
         //
         
-        if loadOwnedPokemon {
+        if onlyDisplayOwnedPokemon {
             useCase.getAllOwnedPokemons().sink { _ in
                 //
             } receiveValue: { detailModels in
