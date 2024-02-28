@@ -29,6 +29,11 @@ class PokemonListHeaderView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(owned: Bool, gridViewStyle: Bool) {
+        ownedOnlyButton.isSelected = owned
+        viewStyleToggleButton.isSelected = gridViewStyle
+    }
 }
 
 private extension PokemonListHeaderView {

@@ -10,7 +10,7 @@ import Combine
 
 
 protocol PokemonDetailViewModelDelegate: AnyObject {
-    func pokemonDetailViewModel(_ viewModel: PokemonDetailViewModel, pokemonDidTap id: String)
+    func pokemonDetailViewModel(_ viewModel: PokemonDetailViewModelSpec, pokemonDidTap id: String)
 }
 
 protocol PokemonDetailViewModelSpec {
