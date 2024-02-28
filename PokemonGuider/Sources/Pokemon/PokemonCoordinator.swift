@@ -39,7 +39,7 @@ extension PokemonCoordinator {
     }
 }
 
-extension PokemonCoordinator: PokemonListViewModelDekegate {
+extension PokemonCoordinator: PokemonListViewModelDelegate {
     func pokemonListViewModel(_ viewModel: PokemonListViewModelSpec, pokemonDidTap id: String) {
         goToPokemonDetail(id: id)
     }

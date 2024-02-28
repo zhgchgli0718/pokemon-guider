@@ -32,7 +32,7 @@ final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
     weak var delegate: PokemonDetailViewModelDelegate?
     
     let id: String
-    let useCase: PokemonUseCaseSpec
+    private let useCase: PokemonUseCaseSpec
     init(id: String, useCase: PokemonUseCaseSpec = PokemonUseCase()) {
         self.id = id
         self.useCase = useCase

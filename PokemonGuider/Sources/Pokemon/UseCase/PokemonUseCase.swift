@@ -18,7 +18,7 @@ protocol PokemonUseCaseSpec {
     func isOwnedPokemon(id: String) -> Bool
     func ownPokemon(id: String, owned: Bool)
     func ownedPokemonChanges() -> AnyPublisher<PokemonDetailModel, Never>
-    func getAllOwnedPokemons() -> AnyPublisher<[PokemonDetailModel], Error>
+    func getAllOwnedPokemon() -> AnyPublisher<[PokemonDetailModel], Error>
 }
 
 final class PokemonUseCase: PokemonUseCaseSpec {
@@ -81,9 +81,7 @@ final class PokemonUseCase: PokemonUseCaseSpec {
         return coreDataRepository.ownedPokemonChanges()
     }
     
-    func getAllOwnedPokemons() -> AnyPublisher<[PokemonDetailModel], Error> {
-        return Future { result in
-            result(.success(self.coreDataRepository.getAllOwnedPokemons()))
-        }.eraseToAnyPublisher()
+    func getAllOwnedPokemon() -> AnyPublisher<[PokemonDetailModel], Error> {
+        return Just(self.coreDataRepository.getAllOwnedPokemon()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

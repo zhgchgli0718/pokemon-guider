@@ -21,8 +21,12 @@ protocol PokemonRepositorySpec {
 
 final class PokemonRepository: PokemonRepositorySpec {
 
-    private lazy var provider = MoyaProvider<PokemonAPITarget>()
+    private let provider: MoyaProvider<PokemonAPITarget>
     private lazy var jsonDecoder = JSONDecoder()
+    
+    init(provider: MoyaProvider<PokemonAPITarget> =  MoyaProvider<PokemonAPITarget>()) {
+        self.provider = provider
+    }
     
     func getPokemonList(nextPage: String?) -> AnyPublisher<PokemonListModel, Error> {
         return provider.requestPublisher(.getPokemonList(nextPage)).map(PokemonListEntity.self).map{ PokemonListModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()

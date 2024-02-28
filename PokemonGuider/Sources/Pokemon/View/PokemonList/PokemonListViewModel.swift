@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Moya
 
-protocol PokemonListViewModelDekegate: AnyObject {
+protocol PokemonListViewModelDelegate: AnyObject {
     func pokemonListViewModel(_ viewModel: PokemonListViewModelSpec, pokemonDidTap id: String)
 }
 
@@ -37,7 +37,7 @@ protocol PokemonListViewModelSpec {
 
 final class PokemonListViewModel: PokemonListViewModelSpec {
     
-    weak var delegate: PokemonListViewModelDekegate?
+    weak var delegate: PokemonListViewModelDelegate?
     
     var onlyDisplayOwnedPokemon: Bool = false {
         didSet {
@@ -56,7 +56,7 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
     private var nextPage: String?
     private var firstLoad: Bool = true
     
-    let useCase: PokemonUseCaseSpec
+    private let useCase: PokemonUseCaseSpec
     init(useCase: PokemonUseCaseSpec = PokemonUseCase()) {
         self.useCase = useCase
     }
@@ -70,7 +70,7 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
         //
         
         if onlyDisplayOwnedPokemon {
-            useCase.getAllOwnedPokemons().sink { _ in
+            useCase.getAllOwnedPokemon().sink { _ in
                 //
             } receiveValue: { detailModels in
                 let viewObjects = detailModels.map { PokemonCellViewObject(model: $0) }

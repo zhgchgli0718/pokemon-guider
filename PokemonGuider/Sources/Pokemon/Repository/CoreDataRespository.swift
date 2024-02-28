@@ -16,7 +16,7 @@ protocol CoreDataRespositorySpec {
     func isOwnedPokemon(id: String) -> Bool
     
     func getPokemonDetail(id: String) -> PokemonDetailModel?
-    func getAllOwnedPokemons() -> [PokemonDetailModel]
+    func getAllOwnedPokemon() -> [PokemonDetailModel]
 }
 
 final class CoreDataRespository: NSObject, CoreDataRespositorySpec {
@@ -69,7 +69,7 @@ final class CoreDataRespository: NSObject, CoreDataRespositorySpec {
         return pokemonChanges.eraseToAnyPublisher()
     }
     
-    func getAllOwnedPokemons() -> [PokemonDetailModel] {
+    func getAllOwnedPokemon() -> [PokemonDetailModel] {
         return CoreDataManager.findAll(PokemonDetailManagedObject.self, predicate: NSPredicate(format: "owned == %@", "1"), context: context).map { PokemonDetailModelMapping.mapping(managedObject: $0) }
     }
 }

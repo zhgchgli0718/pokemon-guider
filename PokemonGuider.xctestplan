@@ -9,7 +9,15 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:PokemonGuider.xcodeproj",
+          "identifier" : "1E6EAC0B2B899973004CC1D2",
+          "name" : "PokemonGuider"
+        }
+      ]
+    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:PokemonGuider.xcodeproj",
       "identifier" : "1E6EAC0B2B899973004CC1D2",

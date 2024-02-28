@@ -12,14 +12,14 @@ import Combine
 public class CoreDataManager: NSObject {
     static var shared: CoreDataManager = CoreDataManager()
     
-    private let modelName = "PokemonGuider"
+    static let modelName = "PokemonGuider"
     
     private override init() {
         
     }
     
     private lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: modelName)
+        let container = NSPersistentContainer(name: CoreDataManager.modelName)
         
 //        if AppConstants.IsRunningTest {
 //            let description = NSPersistentStoreDescription()
