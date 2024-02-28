@@ -40,6 +40,7 @@
 - [x] Writing unit tests.
 - [x] Writing UI tests.
 - [x] Implementing dependency injection.
+- [x] Support L10n.
 ---
 # Tech Stack
 - [x] Swift
@@ -48,9 +49,9 @@
 - [x] CoreData
 - [x] Swift Package Manager
 ## Testing
-- [x] UnitTests
-- [x] UI Tests
-- [x] Snapshot Tests  
+- [x] Unit Tests (6 tests)
+- [x] UI Tests (6 tests)
+- [x] Snapshot Tests  (20 tests)
 ## Dependencies
 - [x] Moya/CombineMoya (網路請求封裝)
 - [x] SnapKit (Code Layout 工具)
@@ -88,8 +89,11 @@
 ---
 # ToDo 待優化項目
 (因時程問題暫未實現)
-- [ ] Implement additional functionality to select two types simultaneously and display attack multipliers (4x, 2x, 1/2x, 1/4x, 0x).
-- [ ] Allowing users to view all Pokemon of a selected type in type matchup chart and access their details.
-- [ ] 使用 Factory Pattern、Builder Pattern or DIC 封裝 ViewController 的依賴
-- [ ] 完善 PokemonDetail 本地 CoreDat 儲存，加速內容頁載入
-- [ ] 完善 SaveToCoreData(SaveableVisitor) 儲存更多 Model(Visit Element)、加上其他儲存策略(Visitor)
+- [ ] [Feat] Implement additional functionality to select two types simultaneously and display attack multipliers (4x, 2x, 1/2x, 1/4x, 0x).
+- [ ] [Feat] Allowing users to view all Pokemon of a selected type in type matchup chart and access their details.
+- [ ] [Feat] 完善 PokemonDetail 本地 CoreDat 儲存，加速內容頁載入
+- [ ] [Chore] 使用 Factory Pattern、Builder Pattern or DIC 封裝 ViewController 的依賴
+- [ ] [Chore] 完善 SaveToCoreData(SaveableVisitor) 儲存更多 Model(Visit Element)、加上其他儲存策略(Visitor)
+- [ ] [Infra] 使用 XCodeGen 產生管理專案，增加協作性
+- [ ] [Infra] 使用 SwiftGen 減少 string access 出錯機會
+- [ ] [Infra] 完善 CI/CD 流程
