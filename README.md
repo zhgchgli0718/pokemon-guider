@@ -21,7 +21,7 @@
 2. Pokeapi 支援 HTTP Caching，[URLRequest 已實現 Cache 功能](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy)
 3. 使用 CoreData 儲存 Detail 資訊
 4. 使用 CoreData 管理 Pokemon 收藏、同步 UI 狀態
-5. 使用 **Visitor Pattern** 抽象 Models Save To Any(此專案是 CoreData) 之間的操作
+5. 使用 **Visitor Pattern** 抽象 Models(多個) Save To Any Source(多個，此專案只有 CoreData) 之間的操作
 ## Pokemon 詳細頁
 - [x] Pokemon 詳細資訊
   - [x] Pokemon ID
