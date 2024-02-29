@@ -1,5 +1,5 @@
 # Pokemon Guider!
-[![Pokemon Guider](https://img.youtube.com/vi/rgY6l_fPERI/0.jpg)](https://www.youtube.com/watch?v=rgY6l_fPERI)
+[![Pokemon Guider](https://img.youtube.com/vi/HrJoLa-Mxcg/0.jpg)](https://www.youtube.com/watch?v=HrJoLa-Mxcg)
 
 [![codecov](https://codecov.io/github/zhgchgli0718/pokemon-guider/graph/badge.svg?token=6ZNKICR3ND)](https://codecov.io/github/zhgchgli0718/pokemon-guider)
 
