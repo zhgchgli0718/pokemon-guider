@@ -50,9 +50,9 @@
 - [x] CoreData
 - [x] Swift Package Manager
 ## Testing
-- [x] Unit Tests (6 tests)
+- [x] Unit Tests (25 tests)
 - [x] UI Tests (3 tests)
-- [x] Snapshot Tests  (25 tests)
+- [x] Snapshot Tests  (6 tests)
 ## Dependencies
 - [x] Moya/CombineMoya (網路請求封裝)
 - [x] SnapKit (Code Layout 工具)
