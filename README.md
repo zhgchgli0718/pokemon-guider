@@ -15,7 +15,7 @@
 - [x] 篩選收藏的 Pokemon
 - [x] 收藏 Pokemon
 - [x] 支援 Grid/List View 切換
-- [x] 本地資料緩存加速列表載入速度
+- [x] 本地資料緩存加速列表載入速度 (HTTP Caching + CoreData)
 ### Dev Notes
 1. 使用 `https://pokeapi.co/api/v2/pokemon/` 取得列表資料，再分別請求 `https://pokeapi.co/api/v2/pokemon/\(id)` 取得寶可夢 `Types`, `Thunmail image`(`sprites->front_default`)，最終組合呈現給 UI
 2. 使用 CoreData 儲存 Pokemon 詳細資料，取得列表資料後優先從 CoreData 直接取得本地已儲存的詳細資料(本地無資料再打 API)，加速列表載入速度
@@ -91,7 +91,7 @@
 (因時程問題暫未實現)
 - [ ] [Feat] Implement additional functionality to select two types simultaneously and display attack multipliers (4x, 2x, 1/2x, 1/4x, 0x).
 - [ ] [Feat] Allowing users to view all Pokemon of a selected type in type matchup chart and access their details.
-- [ ] [Feat] 完善 PokemonDetail 本地 CoreDat 儲存，加速內容頁載入
+- [ ] [Feat] 完善 PokemonDetail to CoreData，讓 App 能完整支援離線瀏覽
 - [ ] [Chore] 使用 Factory Pattern、Builder Pattern or DIC 封裝 ViewController 的依賴
 - [ ] [Chore] 完善 SaveToCoreData(SaveableVisitor) 儲存更多 Model(Visit Element)、加上其他儲存策略(Visitor)
 - [ ] [Infra] 使用 XCodeGen 產生管理專案，增加協作性
