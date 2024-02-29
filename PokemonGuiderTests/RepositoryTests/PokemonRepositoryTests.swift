@@ -43,10 +43,22 @@ final class PokemonRepositoryTests: XCTestCase {
         self.waitForExpectations(timeout: 1.0, handler: nil)
     }
     
+    func testGetPokemonSpecies() {
+        let expectation = expectation(description: "testGetPokemonSpecies expectation")
+        let pokemonRepository = PokemonRepository(provider: makeStubMoyaProvider())
+        pokemonRepository.getPokemonSpecies(id: "1").sink { _ in
+           //
+        } receiveValue: { chainSpeciesModel in
+            XCTAssertEqual(chainSpeciesModel.evolutionChainURL, "https://pokeapi.co/api/v2/evolution-chain/1/")
+            expectation.fulfill()
+        }.store(in: &cancelBag)
+        self.waitForExpectations(timeout: 5.0, handler: nil)
+    }
+    
     func testGetPokemonEvolutionChain() {
         let expectation = expectation(description: "getPokemonEvolutionChain expectation")
         let pokemonRepository = PokemonRepository(provider: makeStubMoyaProvider())
-        pokemonRepository.getPokemonEvolutionChain(id: "1").sink { _ in
+        pokemonRepository.getPokemonEvolutionChain(resourceID: "1").sink { _ in
            //
         } receiveValue: { evolutionChainModel in
             XCTAssertEqual(evolutionChainModel.chainSpecies.count, 3)

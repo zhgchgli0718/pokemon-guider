@@ -16,28 +16,11 @@ final class PokemonUseCaseTests: XCTestCase {
     func testGetPokemonList() {
         let sut = makeSUT()
         
-        // Test Local no data
-        var testExpectation = expectation(description: "getPokemonList expectation")
+        let testExpectation = expectation(description: "getPokemonList expectation")
         
-        var fakePokemonRepository = FakePokemonRepository(listModel: sut.0, detailModels: sut.1)
-        var fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: [])
-        var useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
-        useCase.getPokemonList(nextPage: nil).sink { _ in
-            //
-        } receiveValue: { (listModel, detailModels) in
-            XCTAssertEqual(listModel.count, sut.0.count)
-            XCTAssertEqual(detailModels.count, sut.1.count)
-            testExpectation.fulfill()
-        }.store(in: &cancelBag)
-
-        self.waitForExpectations(timeout: 1.0, handler: nil)
-        
-        // Test All Data from Local
-        testExpectation = expectation(description: "getPokemonList expectation")
-        
-        fakePokemonRepository = FakePokemonRepository(listModel: sut.0, detailModels: [])
-        fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: sut.1)
-        useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
+        let fakePokemonRepository = FakePokemonRepository(listModel: sut.0, detailModels: sut.1)
+        let fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: [])
+        let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
         useCase.getPokemonList(nextPage: nil).sink { _ in
             //
         } receiveValue: { (listModel, detailModels) in
@@ -94,11 +77,78 @@ final class PokemonUseCaseTests: XCTestCase {
         
         self.waitForExpectations(timeout: 1.0, handler: nil)
     }
+    
+    func testGetPokemonPokedex() {
+        let sut = makeSUT()
+        
+        let testExpectation = expectation(description: "getPokemonPokedex expectation")
+        
+        let fakePokemonRepository = FakePokemonRepository(listModel: sut.0, detailModels: sut.1)
+        let fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: [])
+        let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
+        useCase.getPokemonPokedex(id: "1").sink { _ in
+            //
+        } receiveValue: { pokedexModel in
+            XCTAssertEqual(pokedexModel.currentLanguageDescription?.description, "test")
+            testExpectation.fulfill()
+        }.store(in: &cancelBag)
+        
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    func testGetPokemonEvolutionChain() {
+        let sut = makeSUT()
+        
+        let testExpectation = expectation(description: "getPokemonEvolutionChain expectation")
+        
+        let fakePokemonRepository = FakePokemonRepository(listModel: sut.0, detailModels: sut.1)
+        let fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: [])
+        let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
+        useCase.getPokemonEvolutionChain(id: "id").sink { _ in
+            //
+        } receiveValue: { pokemonDetailModels in
+            XCTAssertEqual(pokemonDetailModels.count, 2)
+            XCTAssertEqual(pokemonDetailModels[0].id, "8888")
+            XCTAssertEqual(pokemonDetailModels[1].id, "5566")
+            testExpectation.fulfill()
+        }.store(in: &cancelBag)
+        
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    func testGetAllOwnedPokemon() {
+        let sut = makeSUT()
+        
+        let testExpectation = expectation(description: "getAllOwnedPokemon expectation")
+        
+        let fakePokemonRepository = FakePokemonRepository(listModel: sut.0, detailModels: [])
+        let fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: sut.1)
+        let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
+        useCase.getAllOwnedPokemon().sink { _ in
+            //
+        } receiveValue: { pokemonDetailModels in
+            XCTAssertFalse(pokemonDetailModels.contains(where: { !($0.owned ?? false) }))
+            XCTAssertEqual(pokemonDetailModels.count, sut.1.filter{ $0.owned ?? false }.count)
+            testExpectation.fulfill()
+        }.store(in: &cancelBag)
+        
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    func testIsOwnedPokemon() {
+        let sut = makeSUT()
+        let fakePokemonRepository = FakePokemonRepository(listModel: sut.0, detailModels: [])
+        let fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: sut.1)
+        let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
+        
+        XCTAssertTrue(useCase.isOwnedPokemon(id: sut.1.first(where: { $0.owned ?? false })!.id))
+        XCTAssertFalse(useCase.isOwnedPokemon(id: sut.1.first(where: { !($0.owned ?? false) })!.id))
+    }
 }
 
 private extension PokemonUseCaseTests {
     class FakePokemonRepository: PokemonRepositorySpec {
-        
+
         var detailModels: [PokemonDetailModel]
         var listModel: PokemonListModel
         
@@ -126,11 +176,15 @@ private extension PokemonUseCaseTests {
         }
         
         func getPokemonPokedex(id: String) -> AnyPublisher<PokemonGuider.PokemonPokedexModel, Error> {
-            return Just(PokemonGuider.PokemonPokedexModel(descriptions: [.init(description: "test", language: .init(name: "Hi", url: "fake://"))])).setFailureType(to: Error.self).eraseToAnyPublisher()
+            return Just(PokemonGuider.PokemonPokedexModel(descriptions: [.init(description: "test", language: .init(name: "en", url: "fake://"))])).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
-        func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonGuider.PokemonEvolutionChainModel, Error> {
-            return Just(.init(chainSpecies: [.init(name: "apple", url: "fake://")])).setFailureType(to: Error.self).eraseToAnyPublisher()
+        func getPokemonSpecies(id: String) -> AnyPublisher<PokemonGuider.PokemonSpeciesModel, Error> {
+            return Just(PokemonGuider.PokemonSpeciesModel(evolutionChainURL: "fake://evolution-chain/1/")).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+        
+        func getPokemonEvolutionChain(resourceID: String) -> AnyPublisher<PokemonGuider.PokemonEvolutionChainModel, Error> {
+            return Just(PokemonGuider.PokemonEvolutionChainModel(chainSpecies: [PokemonEvolutionChainModel.ChainSpecies(name: "李奧納多皮卡丘", url: "fake://evolution-chain/5566/", order: 1), PokemonEvolutionChainModel.ChainSpecies(name: "柴可夫柯基", url: "fake://evolution-chain/8888/", order: 0)])).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
     }
     

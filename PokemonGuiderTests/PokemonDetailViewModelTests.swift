@@ -56,7 +56,7 @@ final class PokemonDetailViewModelTests: XCTestCase {
         viewModel.loadPokemonEvolutionChain().sink { _ in
             //
         } receiveValue: { chain in
-            XCTAssertEqual(chain.first?.name, "apple")
+            XCTAssertEqual(chain.first?.name, "李奧納多皮卡丘")
             testExpectation.fulfill()
         }.store(in: &cancelBag)
 
@@ -103,9 +103,6 @@ private extension PokemonDetailViewModelTests {
         }
         
         func getPokemonDetail(name: String) -> AnyPublisher<PokemonGuider.PokemonDetailModel, Error> {
-            if name == "apple" {
-                return Just(PokemonGuider.PokemonDetailModel(id: "23", name: "apple", types: [], coverImage: nil, images: [], stats: [], owned: false)).setFailureType(to: Error.self).eraseToAnyPublisher()
-            }
             return Just(detailModel).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
@@ -113,8 +110,9 @@ private extension PokemonDetailViewModelTests {
             return Just(PokemonGuider.PokemonPokedexModel(descriptions: [.init(description: "test", language: .init(name: "en", url: "fake://"))])).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
-        func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonGuider.PokemonEvolutionChainModel, Error> {
-            return Just(.init(chainSpecies: [.init(name: "apple", url: "fake://")])).setFailureType(to: Error.self).eraseToAnyPublisher()
+        
+        func getPokemonEvolutionChain(id: String) -> AnyPublisher<[PokemonGuider.PokemonDetailModel], Error> {
+            return Just([detailModel]).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
         func isOwnedPokemon(id: String) -> Bool {

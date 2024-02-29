@@ -109,8 +109,8 @@ private extension PokemonListViewModelTests {
             return Just(PokemonGuider.PokemonPokedexModel(descriptions: [.init(description: "test", language: .init(name: "Hi", url: "fake://"))])).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
-        func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonGuider.PokemonEvolutionChainModel, Error> {
-            return Just(.init(chainSpecies: [.init(name: "apple", url: "fake://")])).setFailureType(to: Error.self).eraseToAnyPublisher()
+        func getPokemonEvolutionChain(id: String) -> AnyPublisher<[PokemonGuider.PokemonDetailModel], Error> {
+            return Just(detailModels).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
         func isOwnedPokemon(id: String) -> Bool {
