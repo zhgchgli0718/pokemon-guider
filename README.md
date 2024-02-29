@@ -97,6 +97,7 @@
 - [ ] [Feat] 完善 PokemonDetail to CoreData，**讓 App 能完整支援離線瀏覽**
 - [ ] [Test] 完善 Test Cases Comment、Mock Function 整理
 - [ ] [Chore] 使用 **Factory Pattern** + **Builder Pattern** or DIC 封裝 ViewController/ViewModel... init
+- [ ] [Chore] 使用 **Strategy Pattern** 封裝 getPokemonList or getOwnPokemonList 方法
 - [ ] [Chore] 完善 SaveToCoreData(SaveableVisitor) 儲存更多 Model(Visit Element)、加上其他儲存策略(Visitor)
 - [ ] [Infra] 使用 XCodeGen 產生管理專案，增加協作性
 - [ ] [Infra] 使用 SwiftGen 減少 string access 出錯機會
