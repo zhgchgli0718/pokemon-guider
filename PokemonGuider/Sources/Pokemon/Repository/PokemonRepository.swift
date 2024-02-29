@@ -16,7 +16,8 @@ protocol PokemonRepositorySpec {
     func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error>
     func getPokemonDetail(name: String) -> AnyPublisher<PokemonDetailModel, Error>
     func getPokemonPokedex(id: String) -> AnyPublisher<PokemonPokedexModel, Error>
-    func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonEvolutionChainModel, Error>
+    func getPokemonSpecies(id: String) -> AnyPublisher<PokemonSpeciesModel, Error>
+    func getPokemonEvolutionChain(resourceID: String) -> AnyPublisher<PokemonEvolutionChainModel, Error>
 }
 
 final class PokemonRepository: PokemonRepositorySpec {
@@ -44,9 +45,11 @@ final class PokemonRepository: PokemonRepositorySpec {
         return provider.requestPublisher(.getPokemonPokedex(id)).map(PokemonPokedexEntity.self).map{ PokemonPokedexModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
     }
     
-    func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonEvolutionChainModel, Error> {
-        return provider.requestPublisher(.getPokemonSpecies(id)).map(PokemonSpeciesEntity.self).map { PokemonSpeciesModelMapping.mapping(entity: $0) }.flatMap({ model in
-            return self.provider.requestPublisher(.getPokemonEvolutionChain(model.evolutionChainResourceID)).map(PokemonEvolutionChainEntity.self).map{ PokemonEvolutionChainModelMapping.mapping(entity: $0) }
-        }).mapError{ $0 as Error }.eraseToAnyPublisher()
+    func getPokemonSpecies(id: String) -> AnyPublisher<PokemonSpeciesModel, Error> {
+        return provider.requestPublisher(.getPokemonSpecies(id)).map(PokemonSpeciesEntity.self).map { PokemonSpeciesModelMapping.mapping(entity: $0) }.mapError { $0 as Error }.eraseToAnyPublisher()
+    }
+    
+    func getPokemonEvolutionChain(resourceID: String) -> AnyPublisher<PokemonEvolutionChainModel, Error> {
+        return provider.requestPublisher(.getPokemonEvolutionChain(resourceID)).map(PokemonEvolutionChainEntity.self).map{ PokemonEvolutionChainModelMapping.mapping(entity: $0) }.mapError { $0 as Error }.eraseToAnyPublisher()
     }
 }

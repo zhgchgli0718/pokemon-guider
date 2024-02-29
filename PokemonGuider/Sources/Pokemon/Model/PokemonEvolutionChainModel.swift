@@ -19,10 +19,12 @@ extension PokemonEvolutionChainModel {
     class ChainSpecies {
         let name: String
         let url: String
+        let order: Int
         
-        init(name: String, url: String) {
+        init(name: String, url: String, order: Int) {
             self.name = name
             self.url = url
+            self.order = order
         }
     }
 }
