@@ -32,6 +32,24 @@ final class PokemonUseCaseTests: XCTestCase {
         self.waitForExpectations(timeout: 1.0, handler: nil)
     }
     
+    func testGetPokemonListOwnStatus() {
+        
+        let testExpectation = expectation(description: "getPokemonListOwnStatus expectation")
+        
+        let fakePokemonRepository = FakePokemonRepository(listModel: .init(count: 1, next: nil, previous: nil, results: [.init(name: "5566", url: "fake://pokemon/5566/")]), detailModels: [PokemonDetailModel(id: "5566", name: "李奧納多皮卡丘", types: [PokemonDetailModel.PokemonType.init(name: "flying", url: ""), PokemonDetailModel.PokemonType.init(name: "ghost", url: "")], coverImage: "https://zhgchg.li/fake.png", images: [ "https://zhgchg.li/fake.png"], stats: [], owned: false)])
+        let fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: [PokemonDetailModel(id: "5566", name: "李奧納多皮卡丘", types: [PokemonDetailModel.PokemonType.init(name: "flying", url: ""), PokemonDetailModel.PokemonType.init(name: "ghost", url: "")], coverImage: "https://zhgchg.li/fake.png", images: [ "https://zhgchg.li/fake.png"], stats: [], owned: true)])
+        let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
+        useCase.getPokemonList(nextPage: nil).sink { _ in
+            //
+        } receiveValue: { (_, detailModels) in
+            XCTAssertEqual(detailModels.count, 1)
+            XCTAssertTrue(detailModels.first?.owned ?? false)
+            testExpectation.fulfill()
+        }.store(in: &cancelBag)
+
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
     func testGetPokemonDetailByID() {
         let sut = makeSUT()
         
@@ -41,29 +59,6 @@ final class PokemonUseCaseTests: XCTestCase {
         let fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: [])
         let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
         useCase.getPokemonDetail(id: sut.1.first!.id).sink { _ in
-            //
-        } receiveValue: { detailModel in
-            XCTAssertEqual(detailModel.id, sut.1.first!.id)
-            XCTAssertEqual(detailModel.name, sut.1.first!.name)
-            
-            // also need to save to core data repository
-            XCTAssertEqual(fakeCoreDataPokemonRepository.detailModels.count, 1)
-            XCTAssertEqual(fakeCoreDataPokemonRepository.getPokemonDetail(id: detailModel.id)!.id, detailModel.id)
-            testExpectation.fulfill()
-        }.store(in: &cancelBag)
-        
-        self.waitForExpectations(timeout: 1.0, handler: nil)
-    }
-    
-    func testGetPokemonDetailByName() {
-        let sut = makeSUT()
-        
-        let testExpectation = expectation(description: "getPokemonDetail expectation")
-        
-        let fakePokemonRepository = FakePokemonRepository(listModel: sut.0, detailModels: sut.1)
-        let fakeCoreDataPokemonRepository = FakeCoreDataRespository(detailModels: [])
-        let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
-        useCase.getPokemonDetail(name: sut.1.first!.name).sink { _ in
             //
         } receiveValue: { detailModel in
             XCTAssertEqual(detailModel.id, sut.1.first!.id)
@@ -106,10 +101,10 @@ final class PokemonUseCaseTests: XCTestCase {
         let useCase = PokemonUseCase(repository: fakePokemonRepository, coreDataRepository: fakeCoreDataPokemonRepository)
         useCase.getPokemonEvolutionChain(id: "id").sink { _ in
             //
-        } receiveValue: { pokemonDetailModels in
-            XCTAssertEqual(pokemonDetailModels.count, 2)
-            XCTAssertEqual(pokemonDetailModels[0].id, "8888")
-            XCTAssertEqual(pokemonDetailModels[1].id, "5566")
+        } receiveValue: { evolutionChainModel in
+            XCTAssertEqual(evolutionChainModel.chainSpecies.count, 2)
+            XCTAssertEqual(evolutionChainModel.chainSpecies[0].id, "5566")
+            XCTAssertEqual(evolutionChainModel.chainSpecies[1].id, "8888")
             testExpectation.fulfill()
         }.store(in: &cancelBag)
         

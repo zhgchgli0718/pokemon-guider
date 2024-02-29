@@ -68,8 +68,8 @@ private extension PokemonDetailSnapshotTests {
             return Just(pokedex).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
-        func loadPokemonEvolutionChain() -> AnyPublisher<[PokemonGuider.PokemonDetailModel], Error> {
-            return Just(evolutionChain).setFailureType(to: Error.self).eraseToAnyPublisher()
+        func loadPokemonEvolutionChain() -> AnyPublisher<PokemonGuider.PokemonEvolutionChainModel, Error> {
+            return Just(PokemonGuider.PokemonEvolutionChainModel(chainSpecies: evolutionChain.enumerated().map { .init(name: $1.name, url: "fake://pokemon/\($1.id)/", order: $0) })).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
         func tapPokemon(id: String) {

@@ -114,7 +114,7 @@ private extension CoordinatorTests {
             return Empty().eraseToAnyPublisher()
         }
         
-        func loadPokemonEvolutionChain() -> AnyPublisher<[PokemonGuider.PokemonDetailModel], Error> {
+        func loadPokemonEvolutionChain() -> AnyPublisher<PokemonGuider.PokemonEvolutionChainModel, Error> {
             return Empty().eraseToAnyPublisher()
         }
         

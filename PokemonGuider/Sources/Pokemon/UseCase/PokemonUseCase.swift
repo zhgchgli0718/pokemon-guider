@@ -11,9 +11,8 @@ import Combine
 protocol PokemonUseCaseSpec {
     func getPokemonList(nextPage: String?) -> AnyPublisher<(PokemonListModel, [PokemonDetailModel]), Error>
     func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error>
-    func getPokemonDetail(name: String) -> AnyPublisher<PokemonDetailModel, Error>
     func getPokemonPokedex(id: String) -> AnyPublisher<PokemonPokedexModel, Error>
-    func getPokemonEvolutionChain(id: String) -> AnyPublisher<[PokemonDetailModel], Error>
+    func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonEvolutionChainModel, Error>
     
     func isOwnedPokemon(id: String) -> Bool
     func ownPokemon(id: String, owned: Bool)
@@ -45,13 +44,10 @@ final class PokemonUseCase: PokemonUseCaseSpec {
     }
     
     func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error> {
-        return repository.getPokemonDetail(id: id) .handleEvents(receiveOutput: { detailModel in
-            self.coreDataRepository.savePokemon(detailModel)
-        }).eraseToAnyPublisher()
-    }
-    
-    func getPokemonDetail(name: String) -> AnyPublisher<PokemonDetailModel, Error> {
-        return repository.getPokemonDetail(name: name).handleEvents(receiveOutput: { detailModel in
+        return repository.getPokemonDetail(id: id).map({ detailModel in
+            detailModel.owned = self.coreDataRepository.isOwnedPokemon(id: detailModel.id)
+            return detailModel
+        }).handleEvents(receiveOutput: { detailModel in
             self.coreDataRepository.savePokemon(detailModel)
         }).eraseToAnyPublisher()
     }
@@ -60,16 +56,12 @@ final class PokemonUseCase: PokemonUseCaseSpec {
         return repository.getPokemonPokedex(id: id)
     }
     
-    func getPokemonEvolutionChain(id: String) -> AnyPublisher<[PokemonDetailModel], Error> {
+    func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonEvolutionChainModel, Error> {
         // 需要先從 pokemon-species 拿到 evolution-chain id
         // 從 evolution-chain 拿到進化各階段的 pokemon name
-        // pokemon name 分別去查 detail 拿到 name
         return repository.getPokemonSpecies(id: id).flatMap { speciesModel in
             return self.repository.getPokemonEvolutionChain(resourceID: speciesModel.evolutionChainResourceID).eraseToAnyPublisher()
-        }.flatMap { evolutionChainModel in
-            let publisher = evolutionChainModel.chainSpecies.sorted(by: { $0.order < $1.order }).map { self.getPokemonDetail(name: $0.name) }
-            return Publishers.MergeMany(publisher).collect().eraseToAnyPublisher()
-        }.eraseToAnyPublisher().eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
     }
     
     func isOwnedPokemon(id: String) -> Bool {

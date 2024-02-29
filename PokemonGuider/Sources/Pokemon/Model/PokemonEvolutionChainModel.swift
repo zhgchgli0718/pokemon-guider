@@ -21,6 +21,13 @@ extension PokemonEvolutionChainModel {
         let url: String
         let order: Int
         
+        lazy var id: String = {
+            guard let lastPathComponent = URL(string: url)?.lastPathComponent else {
+                return url
+            }
+            return lastPathComponent
+        }()
+        
         init(name: String, url: String, order: Int) {
             self.name = name
             self.url = url

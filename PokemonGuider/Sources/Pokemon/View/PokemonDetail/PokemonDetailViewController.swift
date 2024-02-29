@@ -63,7 +63,7 @@ private extension PokemonDetailViewController {
         viewModel.loadPokemonEvolutionChain().sink { result in
             //
         } receiveValue: { model in
-            self.configureEvolutionChainStackView(models: model)
+            self.configureEvolutionChainStackView(model: model)
         }.store(in: &cancelBag)
         //
         ownButton.isSelected = viewModel.isOwnedPokemon()
@@ -291,15 +291,15 @@ private extension PokemonDetailViewController {
         return button
     }
     
-    func configureEvolutionChainStackView(models: [PokemonDetailModel]) {
+    func configureEvolutionChainStackView(model: PokemonEvolutionChainModel) {
         self.evolutionChainStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
         //
         
-        for (index, model) in models.enumerated() {
-            let button = self.makeEvolutionChainButton(text: model.name)
-            button.id = model.id
+        for (index, chainSpecie) in model.chainSpecies.sorted(by: { $0.order < $1.order }).enumerated() {
+            let button = self.makeEvolutionChainButton(text: chainSpecie.name)
+            button.id = chainSpecie.id
             self.evolutionChainStackView.addArrangedSubview(button)
-            if index < models.count - 1 {
+            if index < model.chainSpecies.count - 1 {
                 self.evolutionChainStackView.addArrangedSubview(self.makeStatLabel(text: "⬇️"))
             }
         }

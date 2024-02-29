@@ -14,7 +14,6 @@ import CoreData
 protocol PokemonRepositorySpec {
     func getPokemonList(nextPage: String?) -> AnyPublisher<PokemonListModel, Error>
     func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error>
-    func getPokemonDetail(name: String) -> AnyPublisher<PokemonDetailModel, Error>
     func getPokemonPokedex(id: String) -> AnyPublisher<PokemonPokedexModel, Error>
     func getPokemonSpecies(id: String) -> AnyPublisher<PokemonSpeciesModel, Error>
     func getPokemonEvolutionChain(resourceID: String) -> AnyPublisher<PokemonEvolutionChainModel, Error>
@@ -35,10 +34,6 @@ final class PokemonRepository: PokemonRepositorySpec {
     
     func getPokemonDetail(id: String) -> AnyPublisher<PokemonDetailModel, Error> {
         return provider.requestPublisher(.getPokemonDetail(id)).map(PokemonDetailEntity.self).map{ PokemonDetailModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
-    }
-    
-    func getPokemonDetail(name: String) -> AnyPublisher<PokemonDetailModel, Error> {
-        return provider.requestPublisher(.getPokemonDetail(name)).map(PokemonDetailEntity.self).map{ PokemonDetailModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
     }
     
     func getPokemonPokedex(id: String) -> AnyPublisher<PokemonPokedexModel, Error> {

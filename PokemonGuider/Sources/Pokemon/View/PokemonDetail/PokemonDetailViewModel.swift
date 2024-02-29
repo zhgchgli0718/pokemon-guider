@@ -17,7 +17,7 @@ protocol PokemonDetailViewModelSpec {
     var id: String { get }
     func loadPokemonDetail() -> AnyPublisher<PokemonDetailModel, Error>
     func loadPokemonPokedex() -> AnyPublisher<PokemonPokedexModel, Error>
-    func loadPokemonEvolutionChain() -> AnyPublisher<[PokemonDetailModel], Error>
+    func loadPokemonEvolutionChain() -> AnyPublisher<PokemonEvolutionChainModel, Error>
     func tapPokemon(id: String)
     
     func isOwnedPokemon() -> Bool
@@ -46,7 +46,7 @@ final class PokemonDetailViewModel: PokemonDetailViewModelSpec {
         return useCase.getPokemonPokedex(id: id)
     }
     
-    func loadPokemonEvolutionChain() -> AnyPublisher<[PokemonDetailModel], Error> {
+    func loadPokemonEvolutionChain() -> AnyPublisher<PokemonEvolutionChainModel, Error> {
         return useCase.getPokemonEvolutionChain(id: id)
     }
     

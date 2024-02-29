@@ -98,19 +98,12 @@ private extension PokemonListViewModelTests {
             return Just(detailModel).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
-        func getPokemonDetail(name: String) -> AnyPublisher<PokemonGuider.PokemonDetailModel, Error> {
-            guard let detailModel = detailModels.first(where: { $0.name == name }) else {
-                return Empty().eraseToAnyPublisher()
-            }
-            return Just(detailModel).setFailureType(to: Error.self).eraseToAnyPublisher()
-        }
-        
         func getPokemonPokedex(id: String) -> AnyPublisher<PokemonGuider.PokemonPokedexModel, Error> {
             return Just(PokemonGuider.PokemonPokedexModel(descriptions: [.init(description: "test", language: .init(name: "Hi", url: "fake://"))])).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
-        func getPokemonEvolutionChain(id: String) -> AnyPublisher<[PokemonGuider.PokemonDetailModel], Error> {
-            return Just(detailModels).setFailureType(to: Error.self).eraseToAnyPublisher()
+        func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonGuider.PokemonEvolutionChainModel, Error> {
+            return Just(PokemonGuider.PokemonEvolutionChainModel(chainSpecies: detailModels.enumerated().map { .init(name: $1.name, url: "fake://pokemon/\($1.id)/", order: $0) })).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
         
         func isOwnedPokemon(id: String) -> Bool {

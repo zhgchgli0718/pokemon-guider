@@ -381,6 +381,21 @@
                   endingLineNumber = "62"
                   offsetFromSymbolStart = "224">
                </Location>
+               <Location
+                  uuid = "D92AAD72-A6DF-47B5-90E8-EE3A7F1E1C1C - 1450e8ba6b826107"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (PokemonGuider.PokemonEvolutionChainModel) -&gt; () in PokemonGuiderTests.PokemonDetailViewModelTests.testLoadPokemonEvolutionChain() -&gt; ()"
+                  moduleName = "PokemonGuiderTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonDetailViewModelTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "240">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -556,7 +571,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "300"
             endingLineNumber = "300"
-            landmarkName = "configureEvolutionChainStackView(models:)"
+            landmarkName = "configureEvolutionChainStackView(model:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -589,6 +604,21 @@
                   endingLineNumber = "300"
                   offsetFromSymbolStart = "804">
                </Location>
+               <Location
+                  uuid = "184049E2-68D3-456A-8B99-6824C9750B7C - cd52997918da28bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuider.PokemonDetailViewController.configureEvolutionChainStackView(model: PokemonGuider.PokemonEvolutionChainModel) -&gt; ()"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "664">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -604,7 +634,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "297"
             endingLineNumber = "297"
-            landmarkName = "configureEvolutionChainStackView(models:)"
+            landmarkName = "configureEvolutionChainStackView(model:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -692,16 +722,48 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "A5B7405F-A66E-431D-9CE5-1931538BFDA9"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PokemonGuiderTests/PokemonUseCaseTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "getPokemonEvolutionChain(resourceID:)"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "getPokemonDetail(id:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A5B7405F-A66E-431D-9CE5-1931538BFDA9 - 342977ec6da697ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuiderTests.PokemonUseCaseTests.FakePokemonRepository.getPokemonEvolutionChain(resourceID: Swift.String) -&gt; Combine.AnyPublisher&lt;PokemonGuider.PokemonEvolutionChainModel, Swift.Error&gt;"
+                  moduleName = "PokemonGuiderTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  uuid = "A5B7405F-A66E-431D-9CE5-1931538BFDA9 - 342977ec6da69198"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuiderTests.PokemonUseCaseTests.FakePokemonRepository.getPokemonEvolutionChain(resourceID: Swift.String) -&gt; Combine.AnyPublisher&lt;PokemonGuider.PokemonEvolutionChainModel, Swift.Error&gt;"
+                  moduleName = "PokemonGuiderTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -714,13 +776,13 @@
             filePath = "PokemonGuiderTests/PokemonUseCaseTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "getPokemonDetail(id:)"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "testIsOwnedPokemon()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "116F3F40-AFB6-400D-81C7-2C343802C3EE - 1e487aeb690e0e47"
+                  uuid = "116F3F40-AFB6-400D-81C7-2C343802C3EE - 1e487aeb690ef267"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -730,12 +792,12 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
                   offsetFromSymbolStart = "792">
                </Location>
                <Location
-                  uuid = "116F3F40-AFB6-400D-81C7-2C343802C3EE - 1e487aeb690e0cd2"
+                  uuid = "116F3F40-AFB6-400D-81C7-2C343802C3EE - 1e487aeb690ef076"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -745,72 +807,9 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
                   offsetFromSymbolStart = "792">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FF9D4EC6-190F-4507-8969-1F11BDF009DA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PokemonGuider/Sources/Pokemon/UseCase/PokemonUseCase.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "getPokemonEvolutionChain(id:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FF9D4EC6-190F-4507-8969-1F11BDF009DA - 6642cd057fdead83"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (PokemonGuider.PokemonEvolutionChainModel) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;PokemonGuider.PokemonDetailModel&gt;, Swift.Error&gt; in PokemonGuider.PokemonUseCase.getPokemonEvolutionChain(id: Swift.String) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;PokemonGuider.PokemonDetailModel&gt;, Swift.Error&gt;"
-                  moduleName = "PokemonGuider"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/UseCase/PokemonUseCase.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "208">
-               </Location>
-               <Location
-                  uuid = "FF9D4EC6-190F-4507-8969-1F11BDF009DA - c46a8f031a7b3403"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (PokemonGuider.PokemonEvolutionChainModel.ChainSpecies, PokemonGuider.PokemonEvolutionChainModel.ChainSpecies) -&gt; Swift.Bool in closure #2 (PokemonGuider.PokemonEvolutionChainModel) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;PokemonGuider.PokemonDetailModel&gt;, Swift.Error&gt; in PokemonGuider.PokemonUseCase.getPokemonEvolutionChain(id: Swift.String) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;PokemonGuider.PokemonDetailModel&gt;, Swift.Error&gt;"
-                  moduleName = "PokemonGuider"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/UseCase/PokemonUseCase.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "FF9D4EC6-190F-4507-8969-1F11BDF009DA - 82451cf4126ed204"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (PokemonGuider.PokemonEvolutionChainModel.ChainSpecies) -&gt; Combine.AnyPublisher&lt;PokemonGuider.PokemonDetailModel, Swift.Error&gt; in closure #2 (PokemonGuider.PokemonEvolutionChainModel) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;PokemonGuider.PokemonDetailModel&gt;, Swift.Error&gt; in PokemonGuider.PokemonUseCase.getPokemonEvolutionChain(id: Swift.String) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;PokemonGuider.PokemonDetailModel&gt;, Swift.Error&gt;"
-                  moduleName = "PokemonGuider"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/UseCase/PokemonUseCase.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "60">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -825,13 +824,13 @@
             filePath = "PokemonGuiderTests/PokemonUseCaseTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "getPokemonDetail(id:)"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "testIsOwnedPokemon()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "ED259B97-C63B-4922-A4A5-241CC21D7DFE - 1e487aeb690e0e05"
+                  uuid = "ED259B97-C63B-4922-A4A5-241CC21D7DFE - 1e487aeb690ef225"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -841,12 +840,12 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "139"
-                  endingLineNumber = "139"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
                   offsetFromSymbolStart = "560">
                </Location>
                <Location
-                  uuid = "ED259B97-C63B-4922-A4A5-241CC21D7DFE - 1e487aeb690e0c90"
+                  uuid = "ED259B97-C63B-4922-A4A5-241CC21D7DFE - 1e487aeb690ef034"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -856,8 +855,8 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "158"
-                  endingLineNumber = "158"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
                   offsetFromSymbolStart = "560">
                </Location>
             </Locations>
@@ -873,13 +872,13 @@
             filePath = "PokemonGuiderTests/PokemonUseCaseTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "getPokemonDetail(name:)"
-            landmarkType = "7">
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "FakePokemonRepository"
+            landmarkType = "3">
             <Locations>
                <Location
-                  uuid = "9482EF4D-7FF9-4026-9165-B9678450BCA5 - 34b342c06fbb250f"
+                  uuid = "9482EF4D-7FF9-4026-9165-B9678450BCA5 - 34b342c06fbbd92f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -889,12 +888,12 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
                   offsetFromSymbolStart = "792">
                </Location>
                <Location
-                  uuid = "9482EF4D-7FF9-4026-9165-B9678450BCA5 - 34b342c06fbb277c"
+                  uuid = "9482EF4D-7FF9-4026-9165-B9678450BCA5 - 34b342c06fbbdb00"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -904,8 +903,8 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
                   offsetFromSymbolStart = "792">
                </Location>
             </Locations>
@@ -921,13 +920,13 @@
             filePath = "PokemonGuiderTests/PokemonUseCaseTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "getPokemonDetail(name:)"
-            landmarkType = "7">
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "FakePokemonRepository"
+            landmarkType = "3">
             <Locations>
                <Location
-                  uuid = "4622F194-C353-4C80-8C28-EE87C1C15FD7 - 34b342c06fbb254d"
+                  uuid = "4622F194-C353-4C80-8C28-EE87C1C15FD7 - 34b342c06fbbd96d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -937,12 +936,12 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "146"
-                  endingLineNumber = "146"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
                   offsetFromSymbolStart = "560">
                </Location>
                <Location
-                  uuid = "4622F194-C353-4C80-8C28-EE87C1C15FD7 - 34b342c06fbb27ba"
+                  uuid = "4622F194-C353-4C80-8C28-EE87C1C15FD7 - 34b342c06fbbdb5e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -952,8 +951,8 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "165"
-                  endingLineNumber = "165"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
                   offsetFromSymbolStart = "560">
                </Location>
             </Locations>
@@ -969,13 +968,13 @@
             filePath = "PokemonGuiderTests/PokemonUseCaseTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "testGetAllOwnedPokemon()"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "testGetPokemonEvolutionChain()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "7D1C8C4A-657D-4CB7-9FC5-29F5943678A1 - b994585ace569b75"
+                  uuid = "7D1C8C4A-657D-4CB7-9FC5-29F5943678A1 - b994585ace569bd2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -985,12 +984,12 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
                   offsetFromSymbolStart = "184">
                </Location>
                <Location
-                  uuid = "7D1C8C4A-657D-4CB7-9FC5-29F5943678A1 - 88aa05c559ec570e"
+                  uuid = "7D1C8C4A-657D-4CB7-9FC5-29F5943678A1 - 88aa05c559ec57a9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1000,8 +999,38 @@
                   urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "7D1C8C4A-657D-4CB7-9FC5-29F5943678A1 - b994585ace569dc3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Array&lt;PokemonGuider.PokemonDetailModel&gt;) -&gt; () in PokemonGuiderTests.PokemonUseCaseTests.testGetAllOwnedPokemon() -&gt; ()"
+                  moduleName = "PokemonGuiderTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "184">
+               </Location>
+               <Location
+                  uuid = "7D1C8C4A-657D-4CB7-9FC5-29F5943678A1 - 88aa05c559ec51b8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (PokemonGuider.PokemonDetailModel) -&gt; Swift.Bool in implicit closure #1 () throws -&gt; Swift.Bool in closure #2 (Swift.Array&lt;PokemonGuider.PokemonDetailModel&gt;) -&gt; () in PokemonGuiderTests.PokemonUseCaseTests.testGetAllOwnedPokemon() -&gt; ()"
+                  moduleName = "PokemonGuiderTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/PokemonUseCaseTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>
@@ -1017,9 +1046,9 @@
             filePath = "PokemonGuiderTests/PokemonUseCaseTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "getAllOwnedPokemon()"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "ownedPokemonChanges()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1053,6 +1082,38 @@
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BD19855C-F39E-4425-A7C0-D297BF7D2A77"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "configureEvolutionChainStackView(model:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "693782C6-0248-4FEB-AB2E-80ADF3E36259"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Pokemon/UseCase/PokemonUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "getPokemonList(nextPage:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
