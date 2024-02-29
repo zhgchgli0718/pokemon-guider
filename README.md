@@ -13,13 +13,14 @@
 - [x] 點擊進入 Pokemon 詳細頁
 - [x] 滑動載入更多
 - [x] 篩選收藏的 Pokemon
-- [x] 收藏 Pokemon
+- [x] 收藏 Pokemon (Core Data)
 - [x] 支援 Grid/List View 切換
-- [x] 本地資料緩存加速列表載入速度 (HTTP Caching + CoreData)
+- [x] 本地資料緩存加速列表載入速度 (HTTP Caching)
 ### Dev Notes
 1. 使用 `https://pokeapi.co/api/v2/pokemon/` 取得列表資料，再分別請求 `https://pokeapi.co/api/v2/pokemon/\(id)` 取得寶可夢 `Types`, `Thunmail image`(`sprites->front_default`)，最終組合呈現給 UI
-2. 使用 CoreData 儲存 Pokemon 詳細資料，取得列表資料後優先從 CoreData 直接取得本地已儲存的詳細資料(本地無資料再打 API)，加速列表載入速度
-3. 使用 CoreData 儲存、同步 Pokemon 收藏狀態
+2. Pokeapi 支援 HTTP Caching，[URLRequest 已實現 Cache 功能](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy)
+3. 使用 CoreData 儲存 Detail 資訊
+4. 使用 CoreData 管理 Pokemon 收藏、同步 UI 狀態
 ## Pokemon 詳細頁
 - [x] Pokemon 詳細資訊
   - [x] Pokemon ID
@@ -34,8 +35,8 @@
 ### Dev Notes
 1. 使用 `https://pokeapi.co/api/v2/pokemon/\(id)` 取得寶可夢詳細資訊，Images 使用 `sprites` 所有圖片
 2. 使用 `https://pokeapi.co/api/v2/pokedex/\(id)` 取得寶可夢 Pokedex description text，並依照當前語系呈現內容(`description`)
-3. 使用 `https://pokeapi.co/api/v2/evolution-chain/\(id)` 取得寶可夢 Evolution chain，再分別請求 `https://pokeapi.co/api/v2/pokemon/\(id)` 取得寶可夢 `Name`，最終組合呈現給 UI
-4. 使用 CoreData 儲存、同步 Pokemon 收藏狀態
+3. 使用 `https://pokeapi.co/api/v2/pokemon-species/\(id)` 取得 evolution-chain resource id，再帶入 `https://pokeapi.co/api/v2/evolution-chain/\(resource_id)` 取得寶可夢 Evolution Chain Name，最終組合呈現給 UI
+4. 使用 CoreData 管理 Pokemon 收藏、同步 UI 狀態
 ## Others
 - [x] Writing unit tests.
 - [x] Writing UI tests.
@@ -50,8 +51,8 @@
 - [x] Swift Package Manager
 ## Testing
 - [x] Unit Tests (6 tests)
-- [x] UI Tests (6 tests)
-- [x] Snapshot Tests  (20 tests)
+- [x] UI Tests (3 tests)
+- [x] Snapshot Tests  (25 tests)
 ## Dependencies
 - [x] Moya/CombineMoya (網路請求封裝)
 - [x] SnapKit (Code Layout 工具)
@@ -91,7 +92,9 @@
 (因時程問題暫未實現)
 - [ ] [Feat] Implement additional functionality to select two types simultaneously and display attack multipliers (4x, 2x, 1/2x, 1/4x, 0x).
 - [ ] [Feat] Allowing users to view all Pokemon of a selected type in type matchup chart and access their details.
-- [ ] [Feat] 完善 PokemonDetail to CoreData，讓 App 能完整支援離線瀏覽
+- [ ] [Feat] 完善 Error -> UI 處理、網路問題處理
+- [ ] [Feat] 完善 PokemonDetail to CoreData，**讓 App 能完整支援離線瀏覽**
+- [ ] [Test] 完善 Test Cases Comment、Mock Function 整理
 - [ ] [Chore] 使用 Factory Pattern、Builder Pattern or DIC 封裝 ViewController 的依賴
 - [ ] [Chore] 完善 SaveToCoreData(SaveableVisitor) 儲存更多 Model(Visit Element)、加上其他儲存策略(Visitor)
 - [ ] [Infra] 使用 XCodeGen 產生管理專案，增加協作性
