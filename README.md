@@ -21,6 +21,7 @@
 2. Pokeapi 支援 HTTP Caching，[URLRequest 已實現 Cache 功能](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy)
 3. 使用 CoreData 儲存 Detail 資訊
 4. 使用 CoreData 管理 Pokemon 收藏、同步 UI 狀態
+5. 使用 **Visitor Pattern** 抽象 Models Save To Any(此專案是 CoreData) 之間的操作
 ## Pokemon 詳細頁
 - [x] Pokemon 詳細資訊
   - [x] Pokemon ID
@@ -95,7 +96,7 @@
 - [ ] [Feat] 完善 Error -> UI 處理、網路問題處理
 - [ ] [Feat] 完善 PokemonDetail to CoreData，**讓 App 能完整支援離線瀏覽**
 - [ ] [Test] 完善 Test Cases Comment、Mock Function 整理
-- [ ] [Chore] 使用 Factory Pattern、Builder Pattern or DIC 封裝 ViewController 的依賴
+- [ ] [Chore] 使用 **Factory Pattern** + **Builder Pattern** or DIC 封裝 ViewController/ViewModel... init
 - [ ] [Chore] 完善 SaveToCoreData(SaveableVisitor) 儲存更多 Model(Visit Element)、加上其他儲存策略(Visitor)
 - [ ] [Infra] 使用 XCodeGen 產生管理專案，增加協作性
 - [ ] [Infra] 使用 SwiftGen 減少 string access 出錯機會
