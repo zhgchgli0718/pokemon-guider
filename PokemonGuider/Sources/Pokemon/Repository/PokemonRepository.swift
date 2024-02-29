@@ -45,6 +45,8 @@ final class PokemonRepository: PokemonRepositorySpec {
     }
     
     func getPokemonEvolutionChain(id: String) -> AnyPublisher<PokemonEvolutionChainModel, Error> {
-        return provider.requestPublisher(.getPokemonEvolutionChain(id)).map(PokemonEvolutionChainEntity.self).map{ PokemonEvolutionChainModelMapping.mapping(entity: $0) }.mapError{ $0 as Error }.eraseToAnyPublisher()
+        return provider.requestPublisher(.getPokemonSpecies(id)).map(PokemonSpeciesEntity.self).map { PokemonSpeciesModelMapping.mapping(entity: $0) }.flatMap({ model in
+            return self.provider.requestPublisher(.getPokemonEvolutionChain(model.evolutionChainResourceID)).map(PokemonEvolutionChainEntity.self).map{ PokemonEvolutionChainModelMapping.mapping(entity: $0) }
+        }).mapError{ $0 as Error }.eraseToAnyPublisher()
     }
 }

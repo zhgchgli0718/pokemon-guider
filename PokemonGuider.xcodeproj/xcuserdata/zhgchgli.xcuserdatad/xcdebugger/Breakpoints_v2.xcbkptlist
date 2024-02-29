@@ -246,22 +246,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6D84B65E-FEDC-467D-9C8C-9C1055A5FA9E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PokemonGuiderTests/RepositoryTests/PokemonRepositoryTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "makeListStubProvider()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E08E7F77-E902-4AB4-98EF-9CD273FCF033"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -415,6 +399,102 @@
                   startingLineNumber = "44"
                   endingLineNumber = "44"
                   offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "76F48355-5ED9-4E71-AEB9-D50483D934BE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuider/Sources/Pokemon/Repository/PokemonRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "getPokemonEvolutionChain(id:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "76F48355-5ED9-4E71-AEB9-D50483D934BE - 4950f8221bdd500e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (PokemonGuider.PokemonSpeciesModel) -&gt; Combine.Publishers.Map&lt;Combine.AnyPublisher&lt;PokemonGuider.PokemonEvolutionChainEntity, Moya.MoyaError&gt;, PokemonGuider.PokemonEvolutionChainModel&gt; in PokemonGuider.PokemonRepository.getPokemonEvolutionChain(id: Swift.String) -&gt; Combine.AnyPublisher&lt;PokemonGuider.PokemonEvolutionChainModel, Swift.Error&gt;"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/Repository/PokemonRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "76F48355-5ED9-4E71-AEB9-D50483D934BE - 8f916117e9c93752"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (PokemonGuider.PokemonEvolutionChainEntity) -&gt; PokemonGuider.PokemonEvolutionChainModel in closure #2 (PokemonGuider.PokemonSpeciesModel) -&gt; Combine.Publishers.Map&lt;Combine.AnyPublisher&lt;PokemonGuider.PokemonEvolutionChainEntity, Moya.MoyaError&gt;, PokemonGuider.PokemonEvolutionChainModel&gt; in PokemonGuider.PokemonRepository.getPokemonEvolutionChain(id: Swift.String) -&gt; Combine.AnyPublisher&lt;PokemonGuider.PokemonEvolutionChainModel, Swift.Error&gt;"
+                  moduleName = "PokemonGuider"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuider/Sources/Pokemon/Repository/PokemonRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3D5FE56-2E54-4E1A-AE6B-B8887FC33B10"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PokemonGuiderTests/RepositoryTests/PokemonRepositoryTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "makeStubMoyaProvider()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F3D5FE56-2E54-4E1A-AE6B-B8887FC33B10 - 17451360e3df3f44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PokemonGuiderTests.PokemonRepositoryTests.makeStubMoyaProvider() -&gt; Moya.MoyaProvider&lt;PokemonGuider.PokemonAPITarget&gt;"
+                  moduleName = "PokemonGuiderTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/RepositoryTests/PokemonRepositoryTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "F3D5FE56-2E54-4E1A-AE6B-B8887FC33B10 - 25ca51dc0b8cc1a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 (PokemonGuider.PokemonAPITarget) -&gt; Moya.StubBehavior in PokemonGuiderTests.PokemonRepositoryTests.makeStubMoyaProvider() -&gt; Moya.MoyaProvider&lt;PokemonGuider.PokemonAPITarget&gt;"
+                  moduleName = "PokemonGuiderTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhgchgli/Documents/Projects/PokemonGuider/PokemonGuiderTests/RepositoryTests/PokemonRepositoryTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "88">
                </Location>
             </Locations>
          </BreakpointContent>

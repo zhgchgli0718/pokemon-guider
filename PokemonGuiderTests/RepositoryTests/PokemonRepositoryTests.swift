@@ -17,7 +17,7 @@ final class PokemonRepositoryTests: XCTestCase {
     
     func testGetPokemonList() {
         let expectation = expectation(description: "getPokemonList expectation")
-        let pokemonRepository = PokemonRepository(provider: makeListStubProvider())
+        let pokemonRepository = PokemonRepository(provider: makeStubMoyaProvider())
         pokemonRepository.getPokemonList(nextPage: nil).sink { result in
             //
         } receiveValue: { listModel in
@@ -32,7 +32,7 @@ final class PokemonRepositoryTests: XCTestCase {
     
     func testGetPokemonPokedex() {
         let expectation = expectation(description: "getPokemonPokedex expectation")
-        let pokemonRepository = PokemonRepository(provider: makePokedexStubProvider())
+        let pokemonRepository = PokemonRepository(provider: makeStubMoyaProvider())
         pokemonRepository.getPokemonPokedex(id: "1").sink { _ in
             //
         } receiveValue: { pokedexModel in
@@ -45,7 +45,7 @@ final class PokemonRepositoryTests: XCTestCase {
     
     func testGetPokemonEvolutionChain() {
         let expectation = expectation(description: "getPokemonEvolutionChain expectation")
-        let pokemonRepository = PokemonRepository(provider: makeEvolutionChainStubProvider())
+        let pokemonRepository = PokemonRepository(provider: makeStubMoyaProvider())
         pokemonRepository.getPokemonEvolutionChain(id: "1").sink { _ in
            //
         } receiveValue: { evolutionChainModel in
@@ -58,8 +58,21 @@ final class PokemonRepositoryTests: XCTestCase {
 }
 
 private extension PokemonRepositoryTests {
-    func makeStubMoyaProvider(data: Data) -> MoyaProvider<PokemonAPITarget> {
+    func makeStubMoyaProvider() -> MoyaProvider<PokemonAPITarget> {
         let stubEndpointClosure = { (target: PokemonAPITarget) -> Endpoint in
+            let data: Data
+            switch target {
+            case .getPokemonDetail:
+                data = try! Data(contentsOf: Bundle(for: type(of: self)).url(forResource: "pokemonDetail", withExtension: "json")!)
+            case .getPokemonList(_):
+                data = try! Data(contentsOf: Bundle(for: type(of: self)).url(forResource: "pokemonList", withExtension: "json")!)
+            case .getPokemonSpecies:
+                data = try! Data(contentsOf: Bundle(for: type(of: self)).url(forResource: "pokemonSpecies", withExtension: "json")!)
+            case .getPokemonPokedex:
+                data = try! Data(contentsOf: Bundle(for: type(of: self)).url(forResource: "pokemonPokedex", withExtension: "json")!)
+            case .getPokemonEvolutionChain:
+                data = try! Data(contentsOf: Bundle(for: type(of: self)).url(forResource: "pokemonEvolutionChain", withExtension: "json")!)
+            }
           return Endpoint(url: URL(target: target).absoluteString,
                           sampleResponseClosure: { .networkResponse(500 , data) },
                           method: target.method,
@@ -68,33 +81,5 @@ private extension PokemonRepositoryTests {
         }
         let stubbingProvider = MoyaProvider<PokemonAPITarget>(endpointClosure: stubEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         return stubbingProvider
-    }
-    
-    func makeListStubProvider() -> MoyaProvider<PokemonAPITarget> {
-        guard let pathURL = Bundle(for: type(of: self)).url(forResource: "pokemonList", withExtension: "json") else {
-            fatalError("pokemonList.json not found")
-        }
-        return makeStubMoyaProvider(data: try! Data(contentsOf: pathURL))
-    }
-    
-    func makeDetailStubProvider() -> MoyaProvider<PokemonAPITarget> {
-        guard let pathURL = Bundle(for: type(of: self)).url(forResource: "pokemonDetail", withExtension: "json") else {
-            fatalError("pokemonDetail.json not found")
-        }
-        return makeStubMoyaProvider(data: try! Data(contentsOf: pathURL))
-    }
-    
-    func makePokedexStubProvider() -> MoyaProvider<PokemonAPITarget> {
-        guard let pathURL = Bundle(for: type(of: self)).url(forResource: "pokemonPokedex", withExtension: "json") else {
-            fatalError("pokemonPokedex.json not found")
-        }
-        return makeStubMoyaProvider(data: try! Data(contentsOf: pathURL))
-    }
-    
-    func makeEvolutionChainStubProvider() -> MoyaProvider<PokemonAPITarget> {
-        guard let pathURL = Bundle(for: type(of: self)).url(forResource: "pokemonEvolutionChain", withExtension: "json") else {
-            fatalError("pokemonEvolutionChain.json not found")
-        }
-        return makeStubMoyaProvider(data: try! Data(contentsOf: pathURL))
     }
 }
