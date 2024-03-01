@@ -569,8 +569,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "configureEvolutionChainStackView(model:)"
             landmarkType = "7">
             <Locations>
@@ -632,10 +632,10 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "configureEvolutionChainStackView(model:)"
-            landmarkType = "7">
+            startingLineNumber = "301"
+            endingLineNumber = "301"
+            landmarkName = "PokemonDetailViewController"
+            landmarkType = "21">
             <Locations>
                <Location
                   uuid = "C8BAA38B-8A76-497F-9C19-C5B65E7FC6E2 - 4bed5d0647184d65"
@@ -1094,8 +1094,8 @@
             filePath = "PokemonGuider/Sources/Pokemon/View/PokemonDetail/PokemonDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "configureEvolutionChainStackView(model:)"
             landmarkType = "7">
          </BreakpointContent>

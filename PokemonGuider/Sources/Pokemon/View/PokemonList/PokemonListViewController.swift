@@ -121,11 +121,13 @@ private extension PokemonListViewController {
         
         viewModel.didLoadPokemonList.sink { result in
             //
-        } receiveValue: { _ in
+        } receiveValue: { [weak self] _ in
+            guard let self = self else { return }
             self.collectionView.reloadData()
         }.store(in: &cancelBag)
         
-        viewModel.ownedPokemonChanges().sink(receiveValue: { indexPath in
+        viewModel.ownedPokemonChanges().sink(receiveValue: { [weak self] indexPath in
+            guard let self = self else { return }
             (self.collectionView.cellForItem(at: indexPath) as? PokemonCollectionViewCell)?.configure(viewObject: self.viewModel.cellViewObjects[indexPath.row])
             self.collectionView.reloadItems(at: [indexPath])
         }).store(in: &cancelBag)

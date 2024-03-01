@@ -47,7 +47,8 @@ private extension PokemonDetailViewController {
     func binding() {
         viewModel.loadPokemonDetail().sink { result in
             //
-        } receiveValue: { model in
+        } receiveValue: { [weak self] model in
+            guard let self = self else { return }
             self.navigationItem.title = model.name
             self.configureImages(images: model.images)
             self.configureTypes(types: model.types)
@@ -56,19 +57,22 @@ private extension PokemonDetailViewController {
         //
         viewModel.loadPokemonPokedex().sink { result in
             //
-        } receiveValue: { model in
+        } receiveValue: { [weak self] model in
+            guard let self = self else { return }
             self.pokedexLabel.text = model.currentLanguageDescription?.description
         }.store(in: &cancelBag)
         //
         viewModel.loadPokemonEvolutionChain().sink { result in
             //
-        } receiveValue: { model in
+        } receiveValue: { [weak self] model in
+            guard let self = self else { return }
             self.configureEvolutionChainStackView(model: model)
         }.store(in: &cancelBag)
         //
         ownButton.isSelected = viewModel.isOwnedPokemon()
         //
-        viewModel.ownedPokemonChanges().sink { detailModel in
+        viewModel.ownedPokemonChanges().sink { [weak self] detailModel in
+            guard let self = self else { return }
             self.ownButton.isSelected = detailModel.owned ?? false
         }.store(in: &cancelBag)
         

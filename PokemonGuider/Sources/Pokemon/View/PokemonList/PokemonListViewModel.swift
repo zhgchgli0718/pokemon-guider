@@ -72,7 +72,8 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
         if onlyDisplayOwnedPokemon {
             useCase.getAllOwnedPokemon().sink { _ in
                 //
-            } receiveValue: { detailModels in
+            } receiveValue: { [weak self] detailModels in
+                guard let self = self else { return }
                 let viewObjects = detailModels.map { PokemonCellViewObject(model: $0) }
                 self.cellViewObjects = viewObjects
                 self.didLoadPokemonList.send()
@@ -81,7 +82,8 @@ final class PokemonListViewModel: PokemonListViewModelSpec {
         } else {
             useCase.getPokemonList(nextPage: nextPage).sink { _ in
                 //
-            } receiveValue: { (listModel, detailModels) in
+            } receiveValue: { [weak self] (listModel, detailModels) in
+                guard let self = self else { return }
                 let viewObjects = detailModels.map { PokemonCellViewObject(model: $0) }
                 self.cellViewObjects.append(contentsOf: viewObjects)
                 self.didLoadPokemonList.send()
