@@ -99,6 +99,7 @@
 - [ ] [Chore] 使用 **Factory Pattern** + **Builder Pattern** or DIC 封裝 ViewController/ViewModel... init
 - [ ] [Chore] 使用 **Strategy Pattern** 封裝 getPokemonList or getOwnPokemonList 方法
 - [ ] [Chore] 完善 SaveToCoreData(SaveableVisitor) 儲存更多 Model(Visit Element)、加上其他儲存策略(Visitor)
+- [ ] [Chore] 改用 SwiftUI
 - [ ] [Infra] 使用 XCodeGen 產生管理專案，增加協作性
 - [ ] [Infra] 使用 SwiftGen 減少 string access 出錯機會
 - [ ] [Infra] 完善 CI/CD 流程
