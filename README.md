@@ -3,6 +3,10 @@
 
 [![codecov](https://codecov.io/github/zhgchgli0718/pokemon-guider/graph/badge.svg?token=6ZNKICR3ND)](https://codecov.io/github/zhgchgli0718/pokemon-guider)
 
+> This is a sample project showcasing the integration of the Coordinator pattern, Clean Architecture, CoreData, Combine framework, and comprehensive testing within an iOS project.
+
+> Here is my latest [resume](https://www.cakeresume.com/zhgchgli).
+
 # Features
 ## 列表頁面
 - [x] Pokemon 基本訊息
